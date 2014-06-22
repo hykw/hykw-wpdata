@@ -14,7 +14,6 @@ Version: 0.1
 class hykwWPData
 {
   ### ブログ関係
-
   # ブログの名称を取得
   public static function get_blog_name()
   {
@@ -171,5 +170,16 @@ class hykwWPData
     return FALSE;
   }
   
+  ### URL関係
+  # style.cssのURLを返す
+  public static function get_url_stylecss_parent()
+  {
+    return get_template_directory_uri();
+  }
+  public static function get_url_stylecss_child()
+  {
+    return get_stylesheet_directory_uri();
+  }
+
   
 }
