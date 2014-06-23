@@ -13,17 +13,23 @@ Version: 0.1
 
 class hykwWPData
 {
-  ### ブログ関係
-  # ブログの名称を取得
-  public static function get_blog_name()
+  ### サイト関係
+  # サイトの名称を取得
+  public static function get_site_name()
   {
     return get_bloginfo('name');
   }
 
-  # ブログの説明を取得
-  public static function get_blog_description()
+  # サイトの説明を取得
+  public static function get_site_description()
   {
     return get_bloginfo('description');
+  }
+
+  # サイトのURLを取得
+  public static function get_site_url()
+  {
+    return sprintf('%s%s', site_url(), $_SERVER['REQUEST_URI']);
   }
         
   
@@ -169,6 +175,10 @@ class hykwWPData
 
     return FALSE;
   }
+
+
+
+
   
   ### URL関係
   # style.cssのURLを返す
