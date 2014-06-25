@@ -29,7 +29,7 @@ class hykwWPData
   # サイトのURLを取得
   public static function get_site_url()
   {
-    return sprintf('%s%s', site_url(), $_SERVER['REQUEST_URI']);
+    return sprintf('%s%s', get_site_url(), $_SERVER['REQUEST_URI']);
   }
         
   
@@ -48,7 +48,7 @@ class hykwWPData
       $url = get_permalink();
 
     $url =  get_permalink($postid);
-    if ($url == FALSE)
+    if ($url == FALSE) // $postidに該当するページが存在しない場合
       $url = '';
 
     return $url;
@@ -77,7 +77,7 @@ class hykwWPData
   public static function get_post_thumbnail($postid, $size = 'full')
   {
     $thum_id = get_post_thumbnail_id($postid);
-    if (is_null($thum_id))
+    if (is_null($thum_id))   # サムネイル（アイキャッチ画像）は未設定
       return '';
     
     $image = wp_get_attachment_image_src($thum_id, $size);
@@ -89,6 +89,9 @@ class hykwWPData
   public static function get_post_content($postid)
   {
     $post = get_post($postid);
+    if (is_null($post))  # IDに該当するページが無い
+      return '';
+
     return $post->post_content;
   }
   public static function get_in_post_content()
@@ -96,13 +99,13 @@ class hykwWPData
     return get_the_content();
   }
 
-
-
-
   # 抜粋を取得
   public static function get_post_excerpt($postid)
   {
     $post = get_post($postid);
+    if (is_null($post))
+      return '';
+
     if ($post->excerpt != '')
       return $post->excerpt;
 
@@ -128,8 +131,6 @@ class hykwWPData
   }
   
 
-
-
   /*
 # http://wpdocs.sourceforge.jp/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%BF%E3%82%B0/get_the_category
   # カテゴリオブジェクトの配列を返す
@@ -143,7 +144,7 @@ class hykwWPData
   */
 
   # 投稿のカテゴリ名の取得(１つしか設定されてない場合、文字列で返す。複数の場合は配列)
-  public static function get_post_categoryNames($postid = FALSE)
+  public static function get_post_categoryNames($postid = FALSE, $isFirstOnly = FALSE)
   {
     if ($postid == FALSE)
       $cats = get_the_category();
@@ -157,10 +158,15 @@ class hykwWPData
           return $cats[0]->name;
     }
     
+    # カテゴリ１つを想定したテーマの場合、最初のテーマ名を返す
+    if ($isFirstOnly)
+      return $cats[0]->name;
+
     $ret = array();
     foreach ($cats as $cat) {
       array_push($ret, $cat->name);
     }
+
     return $ret;
   }
 
@@ -176,9 +182,6 @@ class hykwWPData
     return FALSE;
   }
 
-
-
-
   
   ### URL関係
   # style.cssのURLを返す
@@ -191,5 +194,4 @@ class hykwWPData
     return get_stylesheet_directory_uri();
   }
 
-  
 }
