@@ -185,13 +185,27 @@ class hykwWPData
   
   ### URL関係
   # style.cssのURLを返す
-  public static function get_url_stylecss_parent()
+  public static function get_url_stylecss_parent($url = '', $ver = '')
   {
-    return get_template_directory_uri();
-  }
-  public static function get_url_stylecss_child()
-  {
-    return get_stylesheet_directory_uri();
-  }
+    $ret = get_template_directory_uri();
+    if ($ret == '')
+      return '';
 
+    return hykwWPData::_get_url_stylecss_concat($ret, $url, $ver);
+  }
+  public static function get_url_stylecss_child($url = '', $ver = '')
+  {
+    $ret = get_stylesheet_directory_uri();
+    if ($ret == '')
+      return '';
+
+    return hykwWPData::_get_url_stylecss_concat($ret, $url, $ver);
+  }
+  private static function _get_url_stylecss_concat($ret, $url, $ver)
+  {
+    $verstr = ($ver == '') ? '' : sprintf('?ver=%s', $ver);
+    $ret = sprintf('%s%s%s', $ret, $url, $verstr);
+
+    return $ret;
+  }
 }
