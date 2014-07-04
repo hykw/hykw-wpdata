@@ -208,4 +208,19 @@ class hykwWPData
 
     return $ret;
   }
+
+  ### ディレクトリ関係
+  # 親テーマのディレクトリを返す
+  public static function get_dir_template_parent()
+  {
+    return get_template_directory();
+  }
+
+  # 子テーマのディレクトリを返す
+  public static function get_dir_template_child()
+  {
+    return get_stylesheet_directory();
+  }
+  
+
 }
