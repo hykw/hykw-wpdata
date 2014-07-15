@@ -191,9 +191,27 @@ class hykwWPData
     if ($pruneDomain == FALSE)
       return $url;
 
-    $url = preg_replace(sprintf('/https?:\/\/%s(.*)$/', $_SERVER["SERVER_NAME"]), '${1}', $url);
+    $url = preg_replace(sprintf('/https?:\/\/%s(.*)$/', $_SERVER['SERVER_NAME']), '${1}', $url);
     return $url;	
   }
+
+  # 親ページのURLを返す(親ページの場合、自分のURLを返す）
+  public static function get_in_page_parent_permalink($pruneDomain = TRUE)
+  {
+    $url = hykwWPData::get_in_page_permalink(FALSE);
+    $urls = explode('/', $url);
+
+    if ($pruneDomain)
+      return sprintf('/%s', $urls[3]);
+
+    $ret = array();
+    for ($i = 0; $i <= 3; $i++) {
+      array_push($ret, $urls[$i]);
+    }
+
+    return implode('/', $ret);
+  }
+
 
 
   
