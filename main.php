@@ -182,6 +182,20 @@ class hykwWPData
     return FALSE;
   }
 
+  ### 固定ページ関係
+  # 現在のページのURLを返す
+  ### ※is_page()==TRUE以外の所で呼ぶと、mod_rewriteの関係で想定外のURLが返ってくるので注意
+  public static function get_in_page_permalink($pruneDomain = TRUE)
+  {
+    $url = get_permalink();
+    if ($pruneDomain == FALSE)
+      return $url;
+
+    $url = preg_replace(sprintf('/https?:\/\/%s(.*)$/', $_SERVER["SERVER_NAME"]), '${1}', $url);
+    return $url;	
+  }
+
+
   
   ### URL関係
   # style.cssのURLを返す
