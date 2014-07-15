@@ -212,8 +212,17 @@ class hykwWPData
     return implode('/', $ret);
   }
 
+  # 指定URLのページのタイトルを取得する
+  public static function get_page_title_byPath($path)
+  {
+    $work = get_page_by_path($path);
+    if ($work != NULL) 
+      if ($work->post_status == 'publish')
+	return $work->post_title;
 
-
+    return '';
+  }
+  
   
   ### URL関係
   # style.cssのURLを返す
