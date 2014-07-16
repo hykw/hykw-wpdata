@@ -195,7 +195,7 @@ class hykwWPData
   }
 
   # slugでカテゴリ名を取得
-  public static function get_category_name_bySlug($slug)
+  public static function get_post_category_name_bySlug($slug)
   {
     $work = get_category_by_slug($slug);
     if (is_null($work))
