@@ -194,6 +194,19 @@ class hykwWPData
     return FALSE;
   }
 
+  # slugでカテゴリ名を取得
+  public static function get_category_name_bySlug($slug)
+  {
+    $work = get_category_by_slug($slug);
+    if (is_null($work))
+      return '';
+    else
+      return $work->cat_name;
+  }
+  
+
+
+
   ### 固定ページ関係
   # 現在のページのURLを返す
   ### ※is_page()==TRUE以外の所で呼ぶと、mod_rewriteの関係で想定外のURLが返ってくるので注意
