@@ -130,6 +130,18 @@ class hykwWPData
     return get_the_time(get_option('date_format'));
   }
   
+  # カスタムフィールドの取得
+  public static function get_post_meta($postid, $key, $single = TRUE)
+  {
+    return get_post_meta($postid, $key, $single);
+  }
+  public static function get_in_post_meta($key, $single = TRUE)
+  {
+    $postid = hykwWPData::get_in_post_id();
+    return hykwWPData::get_post_meta($postid, $key, $single);
+  }
+
+
 
   /*
 # http://wpdocs.sourceforge.jp/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%BF%E3%82%B0/get_the_category
