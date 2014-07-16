@@ -208,6 +208,40 @@ class hykwWPData
 
 
   ### 固定ページ関係
+  # ページのIDを返す
+  private static function _get_PageObjValue_byPath($path, $key, $post_statuses = array('publish'))
+  {
+    $work = get_page_by_path($path);
+    if ($work != NULL) {
+      $bValid = FALSE;
+      foreach ($post_statuses as $post_status) {
+        if ($work->post_status == $post_status) {
+          $bValid = TRUE;
+          break;
+        }
+      }
+      
+      if ($bValid)
+        return $work->$key;
+    }
+
+    return '';
+  }
+  
+
+  public static function get_in_page_id()
+  {
+    return get_the_ID();
+  }
+
+  # 指定URLのページのIDを返す
+  public static function get_page_id_byPath($path)
+  {
+    return hykwWPData::_get_PageObjValue_byPath($path, 'ID');
+  }
+  
+
+
   # 現在のページのURLを返す
   ### ※is_page()==TRUE以外の所で呼ぶと、mod_rewriteの関係で想定外のURLが返ってくるので注意
   public static function get_in_page_permalink($pruneDomain = TRUE)
@@ -217,7 +251,7 @@ class hykwWPData
       return $url;
 
     $url = preg_replace(sprintf('/https?:\/\/%s(.*)$/', $_SERVER['SERVER_NAME']), '${1}', $url);
-    return $url;	
+    return $url;        
   }
 
   # 親ページのURLを返す(親ページの場合、自分のURLを返す）
@@ -240,12 +274,7 @@ class hykwWPData
   # 指定URLのページのタイトルを取得する
   public static function get_page_title_byPath($path)
   {
-    $work = get_page_by_path($path);
-    if ($work != NULL) 
-      if ($work->post_status == 'publish')
-	return $work->post_title;
-
-    return '';
+    return hykwWPData::_get_PageObjValue_byPath($path, 'post_title');
   }
   
   
