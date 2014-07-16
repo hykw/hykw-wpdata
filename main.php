@@ -208,7 +208,6 @@ class hykwWPData
 
 
   ### 固定ページ関係
-  # ページのIDを返す
   private static function _get_PageObjValue_byPath($path, $key, $post_statuses = array('publish'))
   {
     $work = get_page_by_path($path);
@@ -227,20 +226,17 @@ class hykwWPData
 
     return '';
   }
-  
 
+  # ページのIDを返す
   public static function get_in_page_id()
   {
     return get_the_ID();
   }
-
   # 指定URLのページのIDを返す
   public static function get_page_id_byPath($path)
   {
     return hykwWPData::_get_PageObjValue_byPath($path, 'ID');
   }
-  
-
 
   # 現在のページのURLを返す
   ### ※is_page()==TRUE以外の所で呼ぶと、mod_rewriteの関係で想定外のURLが返ってくるので注意
@@ -277,6 +273,39 @@ class hykwWPData
     return hykwWPData::_get_PageObjValue_byPath($path, 'post_title');
   }
   
+  # 指定URLのページの子ページの指定項目(array)を取得
+  #  エラー時はFALSEを返す
+  #  それ以外は、カテゴリ数分の連想配列で返す
+  public static function get_page_children_byPath($path, $keys)
+  {
+    $pageid = hykwWPData::get_page_id_byPath($path);
+
+    $wp_query = new WP_Query();
+    $all_wp_pages = $wp_query->query(
+	array(
+	    'post_type' => 'page', 
+	    'posts_per_page' => -1,
+	    'order' => 'DESC',
+	    'orderby' => 'menu_order',
+	));
+
+    $objs = get_page_children($pageid, $all_wp_pages);
+    if (is_null($objs))
+      return FALSE;
+
+    $ret = array();
+    foreach ($objs as $obj) {
+      $value = array();
+      foreach ($keys as $key) {
+	$value[$key] = $obj->$key;
+      }
+
+      array_push($ret, $value);
+    }
+
+    return $ret;
+  }
+
   
   ### URL関係
   # style.cssのURLを返す
