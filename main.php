@@ -238,6 +238,13 @@ class hykwWPData
     return hykwWPData::_get_PageObjValue_byPath($path, 'ID');
   }
 
+  # 指定IDのページのURLを返す
+  public static function get_page_permalink($postid)
+  {
+    return get_page_uri($postid);
+  }
+  
+
   # 現在のページのURLを返す
   ### ※is_page()==TRUE以外の所で呼ぶと、mod_rewriteの関係で想定外のURLが返ってくるので注意
   public static function get_in_page_permalink($pruneDomain = TRUE)
