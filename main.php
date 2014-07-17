@@ -287,19 +287,22 @@ class hykwWPData
           'post_name',
       ));
   */
-  public static function get_page_children_byPath($path, $keys, $debug=FALSE)
+  public static function get_page_children_byPath($path, $keys, $args = FALSE, $debug=FALSE)
   {
     $pageid = hykwWPData::get_page_id_byPath($path);
 
     $wp_query = new WP_Query();
-    $all_wp_pages = $wp_query->query(
-        array(
-            'post_type' => 'page', 
-            'posts_per_page' => -1,
-            'order' => 'DESC',
-            'orderby' => 'menu_order',
-        ));
 
+    if ($args == FALSE) {
+      $args = array(
+          'post_type' => 'page', 
+          'posts_per_page' => -1,
+          'order' => 'DESC',
+          'orderby' => 'menu_order',
+      );
+    }   
+
+    $all_wp_pages = $wp_query->query($args);
     $objs = get_page_children($pageid, $all_wp_pages);
     if (is_null($objs))
       return FALSE;
