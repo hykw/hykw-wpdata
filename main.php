@@ -276,28 +276,42 @@ class hykwWPData
   # 指定URLのページの子ページの指定項目(array)を取得
   #  エラー時はFALSEを返す
   #  それ以外は、カテゴリ数分の連想配列で返す
-  public static function get_page_children_byPath($path, $keys)
+  #
+  # $debug = TRUE にすると、WP_Post Object をまるごと返す
+  # 
+  /*
+   e.g.
+   $cats = hykwWPData::get_page_children_byPath($parent_url,
+      array(
+          'post_title',
+          'post_name',
+      ));
+  */
+  public static function get_page_children_byPath($path, $keys, $debug=FALSE)
   {
     $pageid = hykwWPData::get_page_id_byPath($path);
 
     $wp_query = new WP_Query();
     $all_wp_pages = $wp_query->query(
-	array(
-	    'post_type' => 'page', 
-	    'posts_per_page' => -1,
-	    'order' => 'DESC',
-	    'orderby' => 'menu_order',
-	));
+        array(
+            'post_type' => 'page', 
+            'posts_per_page' => -1,
+            'order' => 'DESC',
+            'orderby' => 'menu_order',
+        ));
 
     $objs = get_page_children($pageid, $all_wp_pages);
     if (is_null($objs))
       return FALSE;
 
+    if ($debug)
+      return $objs;
+
     $ret = array();
     foreach ($objs as $obj) {
       $value = array();
       foreach ($keys as $key) {
-	$value[$key] = $obj->$key;
+        $value[$key] = $obj->$key;
       }
 
       array_push($ret, $value);
