@@ -94,9 +94,13 @@ class hykwWPData
 
     return $post->post_content;
   }
-  public static function get_in_post_content()
+  public static function get_in_post_content($isApplyFilter = TRUE)
   {
-    return apply_filters('the_content', get_the_content());
+		$contents = get_the_content();
+		if ($isApplyFilter)
+			return apply_filters('the_content', $contents);
+
+		return $contents;
   }
 
   # 抜粋を取得
