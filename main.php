@@ -96,7 +96,7 @@ class hykwWPData
   }
   public static function get_in_post_content()
   {
-    return get_the_content();
+    return apply_filters('the_content', get_the_content());
   }
 
   # 抜粋を取得
