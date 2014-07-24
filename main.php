@@ -96,11 +96,11 @@ class hykwWPData
   }
   public static function get_in_post_content($isApplyFilter = TRUE)
   {
-		$contents = get_the_content();
-		if ($isApplyFilter)
-			return apply_filters('the_content', $contents);
+                $contents = get_the_content();
+                if ($isApplyFilter)
+                        return apply_filters('the_content', $contents);
 
-		return $contents;
+                return $contents;
   }
 
   # 抜粋を取得
