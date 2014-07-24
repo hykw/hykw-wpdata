@@ -96,11 +96,20 @@ class hykwWPData
   }
   public static function get_in_post_content($isApplyFilter = TRUE)
   {
-                $contents = get_the_content();
-                if ($isApplyFilter)
-                        return apply_filters('the_content', $contents);
+    /*
+      自動整形機能を無効にしないと、apply_filters()のタイミングで
+      勝手に整形(<br>や<p>が入る）されるので注意
+      
+      # 自動整形機能を無効化
+      remove_filter( 'the_content', 'wpautop' );
+      remove_filter( 'the_excerpt', 'wpautop' );
+    */
 
-                return $contents;
+    $contents = get_the_content();
+    if ($isApplyFilter)
+      return apply_filters('the_content', $contents);
+
+    return $contents;
   }
 
   # 抜粋を取得
