@@ -271,9 +271,13 @@ class hykwWPData
   }
 
   # 親ページのURLを返す(親ページの場合、自分のURLを返す）
+  # エラーなら FALSE
   public static function get_in_page_parent_permalink($pruneDomain = TRUE)
   {
     $url = hykwWPData::get_in_page_permalink(FALSE);
+    if ($url == '')
+      return FALSE;
+
     $urls = explode('/', $url);
 
     if ($pruneDomain)
