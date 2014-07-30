@@ -251,12 +251,36 @@ class hykwWPData
     return hykwWPData::_get_PageObjValue_byPath($path, 'ID');
   }
 
-  # 指定IDのページのURLを返す
-  public static function get_page_permalink($postid)
+  # 指定ID/現在のページのURLを返す
+  public static function get_page_permalink($postid = '', $pruneDomain = TRUE)
   {
-    return get_page_uri($postid);
+    if ($postid != '')
+      return get_page_uri($postid);
+
+    $url = (is_ssl() ?'https://':'http://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    if ($pruneDomain == FALSE)
+      return $url;
+    $url = preg_replace(sprintf('/https?:\/\/%s(.*)$/', $_SERVER['SERVER_NAME']), '${1}', $url);
+    return $url;        
   }
-  
+  public static function get_page_parent_permalink($postid = '', $pruneDomain = TRUE)
+  {
+    $url = self::get_page_permalink($postid, FALSE);
+    if ($url == '')
+      return FALSE;
+
+    $urls = explode('/', $url);
+
+    if ($pruneDomain)
+      return sprintf('/%s', $urls[3]);
+
+    $ret = array();
+    for ($i = 0; $i <= 3; $i++) {
+      array_push($ret, $urls[$i]);
+    }
+
+    return implode('/', $ret);
+  }
 
   # 現在のページのURLを返す
   ### ※is_page()==TRUE以外の所で呼ぶと、mod_rewriteの関係で想定外のURLが返ってくるので注意
