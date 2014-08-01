@@ -32,6 +32,27 @@ class hykwWPData
     return sprintf('%s%s', get_site_url(), $_SERVER['REQUEST_URI']);
   }
         
+
+  # echo しちゃう関数の結果を変数で受けとる
+  private static function _obget_echoFun($funcName)
+  {
+    ob_start();
+    call_user_func($funcName);
+    $ret = ob_get_contents();
+    ob_end_clean();
+
+    return $ret;
+  }
+
+  public static function get_wp_head()
+  {
+    return self::_obget_echoFun('wp_head');
+  }
+  public static function get_wp_footer()
+  {
+    return self::_obget_echoFun('wp_footer');
+  }
+
   
   ### 投稿関係
   # 投稿のIDを取得
