@@ -92,7 +92,10 @@ class hykwWPData
   {
     return get_the_title();
   }
-  
+  public static function get_post_titleByID($postid)
+  {
+    return get_the_title($postid);
+  }
 
   # サムネイルのURLを取得
   public static function get_post_thumbnail($postid, $size = 'full')
