@@ -363,8 +363,6 @@ class hykwWPData
   {
     $pageid = hykwWPData::get_page_id_byPath($path);
 
-    $wp_query = new WP_Query();
-
     if ($args == FALSE) {
       $args = array(
           'post_type' => 'page', 
@@ -374,13 +372,19 @@ class hykwWPData
       );
     }   
 
+    $wp_query = new WP_Query();
+
     $all_wp_pages = $wp_query->query($args);
     $objs = get_page_children($pageid, $all_wp_pages);
-    if (is_null($objs))
+    if (is_null($objs)) {
+      wp_reset_postdata();
       return FALSE;
+    }
 
-    if ($debug)
+    if ($debug) {
+      wp_reset_postdata();
       return $objs;
+    }
 
     $ret = array();
     foreach ($objs as $obj) {
@@ -392,6 +396,7 @@ class hykwWPData
       array_push($ret, $value);
     }
 
+    wp_reset_postdata();
     return $ret;
   }
 
