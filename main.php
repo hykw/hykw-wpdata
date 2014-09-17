@@ -29,9 +29,14 @@ class hykwWPData
   # サイトのURLを取得
   public static function get_site_url()
   {
+    return get_site_url();
+  }
+
+  # URLを取得
+  public static function get_url()
+  {
     return sprintf('%s%s', get_site_url(), $_SERVER['REQUEST_URI']);
   }
-        
 
   # echo しちゃう関数の結果を変数で受けとる
   private static function _obget_echoFun($funcName)
