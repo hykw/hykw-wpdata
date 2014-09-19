@@ -81,7 +81,7 @@ class hykwWPData
   }
   public static function get_in_post_permalink()
   {
-    return hykwWPData::get_post_permalink();
+    return self::get_post_permalink();
   }
 
 
@@ -179,8 +179,8 @@ class hykwWPData
   }
   public static function get_in_post_meta($key, $single = TRUE)
   {
-    $postid = hykwWPData::get_in_post_id();
-    return hykwWPData::get_post_meta($postid, $key, $single);
+    $postid = self::get_in_post_id();
+    return self::get_post_meta($postid, $key, $single);
   }
 
 
@@ -277,7 +277,7 @@ class hykwWPData
   # 指定URLのページのIDを返す
   public static function get_page_id_byPath($path)
   {
-    return hykwWPData::_get_PageObjValue_byPath($path, 'ID');
+    return self::_get_PageObjValue_byPath($path, 'ID');
   }
 
   # 指定ID/現在のページのURLを返す
@@ -327,7 +327,7 @@ class hykwWPData
   # エラーなら FALSE
   public static function get_in_page_parent_permalink($pruneDomain = TRUE)
   {
-    $url = hykwWPData::get_in_page_permalink(FALSE);
+    $url = self::get_in_page_permalink(FALSE);
     if ($url == '')
       return FALSE;
 
@@ -347,7 +347,7 @@ class hykwWPData
   # 指定URLのページのタイトルを取得する
   public static function get_page_title_byPath($path)
   {
-    return hykwWPData::_get_PageObjValue_byPath($path, 'post_title');
+    return self::_get_PageObjValue_byPath($path, 'post_title');
   }
   
   # 指定URLのページの子ページの指定項目(array)を取得
@@ -358,7 +358,7 @@ class hykwWPData
   # 
   /*
    e.g.
-   $cats = hykwWPData::get_page_children_byPath($parent_url,
+   $cats = self::get_page_children_byPath($parent_url,
       array(
           'post_title',
           'post_name',
@@ -366,7 +366,7 @@ class hykwWPData
   */
   public static function get_page_children_byPath($path, $keys, $args = FALSE, $debug=FALSE)
   {
-    $pageid = hykwWPData::get_page_id_byPath($path);
+    $pageid = self::get_page_id_byPath($path);
 
     if ($args == FALSE) {
       $args = array(
@@ -414,7 +414,7 @@ class hykwWPData
     if ($ret == '')
       return '';
 
-    return hykwWPData::_get_url_stylecss_concat($ret, $url, $ver);
+    return self::_get_url_stylecss_concat($ret, $url, $ver);
   }
   public static function get_url_stylecss_child($url = '', $ver = '')
   {
@@ -422,7 +422,7 @@ class hykwWPData
     if ($ret == '')
       return '';
 
-    return hykwWPData::_get_url_stylecss_concat($ret, $url, $ver);
+    return self::_get_url_stylecss_concat($ret, $url, $ver);
   }
   private static function _get_url_stylecss_concat($ret, $url, $ver)
   {
