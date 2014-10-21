@@ -39,10 +39,21 @@ class hykwWPData
   }
 
   # echo しちゃう関数の結果を変数で受けとる
-  private static function _obget_echoFun($funcName)
+  public static function obget_echoFun($funcName, $args = false)
   {
     ob_start();
-    call_user_func($funcName);
+
+    if ($args == false)
+      call_user_func($funcName);
+    else {
+      if (!is_array($args))
+	$array_args = array($args);
+      else
+	$array_args = $args;
+
+      call_user_func_array($funcName, $array_args);
+    }
+
     $ret = ob_get_contents();
     ob_end_clean();
 
@@ -51,11 +62,11 @@ class hykwWPData
 
   public static function get_wp_head()
   {
-    return self::_obget_echoFun('wp_head');
+    return self::obget_echoFun('wp_head');
   }
   public static function get_wp_footer()
   {
-    return self::_obget_echoFun('wp_footer');
+    return self::obget_echoFun('wp_footer');
   }
 
   
