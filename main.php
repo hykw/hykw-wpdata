@@ -456,5 +456,11 @@ class hykwWPData
     return get_stylesheet_directory();
   }
   
+  ### アカウント関係
+  # 指定名称のアカウントIDを取得
+  public static function get_user_id_byName($username)
+  {
+    return get_user_by('login', $username)->ID;
+  }
 
 }
