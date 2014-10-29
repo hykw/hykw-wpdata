@@ -257,7 +257,28 @@ class hykwWPData
       return $work->cat_name;
   }
   
+  # カテゴリ名からカテゴリIDを返す。
+  # カテゴリ名がarrayの場合、カテゴリIDもarrayで返る
+  # 取得できない時はFALSEを返す
+  public static function get_category_id_byName($catnames)
+  {
+    $ret = array();
+    
+    if (!is_array($catnames)) {
+      $id = get_cat_ID($catnames);
+      return ($id == 0) ? FALSE : $id;
+    }
 
+    foreach ($catnames as $catname) {
+      $id = get_cat_ID($catname);
+      if ($id == 0)
+	$id = FALSE;
+
+      array_push($ret, $id);
+    }
+
+    return $ret;
+  }
 
 
   ### 固定ページ関係
