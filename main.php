@@ -316,9 +316,9 @@ class hykwWPData
   public static function get_page_permalink($postid = '', $pruneDomain = TRUE)
   {
     if ($postid != '')
-      return get_page_uri($postid);
+      return self::pruneQueryString(get_page_uri($postid));
 
-    $url = (is_ssl() ?'https://':'http://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    $url = self::pruneQueryString((is_ssl() ?'https://':'http://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     if ($pruneDomain == FALSE)
       return $url;
     $url = preg_replace(sprintf('/https?:\/\/%s(.*)$/', $_SERVER['SERVER_NAME']), '${1}', $url);
@@ -463,6 +463,14 @@ class hykwWPData
 
     return $ret;
   }
+
+  # URLから、?code=1234 みたいなパラメータを除去
+  public static function pruneQueryString($url)
+  {
+    $url = preg_replace('/^([^?].*)\?.*$/', '$1', $url);
+    return $url;
+  }
+
 
   ### ディレクトリ関係
   # 親テーマのディレクトリを返す
