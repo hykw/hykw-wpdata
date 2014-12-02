@@ -209,28 +209,31 @@ class hykwWPData
   */
 
   # 投稿のカテゴリ名の取得(１つしか設定されてない場合、文字列で返す。複数の場合は配列)
-  public static function get_post_categoryNames($postid = FALSE, $isFirstOnly = FALSE)
+  # $isParentOnly: TRUEなら、parent='0'(親カテゴリ)のみを対象とする
+  public static function get_post_categoryNames($postid = FALSE, $isFirstOnly = FALSE, $isParentOnly = FALSE)
   {
     if ($postid == FALSE)
       $cats = get_the_category();
     else
       $cats = get_the_category($postid);
 
-    switch (count($cats)) {
-        case 0: 
-          return '';
-        case 1:
-          return $cats[0]->name;
-    }
-    
-    # カテゴリ１つを想定したテーマの場合、最初のテーマ名を返す
-    if ($isFirstOnly)
-      return $cats[0]->name;
-
     $ret = array();
     foreach ($cats as $cat) {
-      array_push($ret, $cat->name);
+      if ($isParentOnly) {
+	if ($cat->parent == 0) {
+	  array_push($ret, $cat->name);
+	}
+      } else {
+	array_push($ret, $cat->name);
+      }
     }
+
+    if (count($ret) == 0)
+      return '';
+
+    # カテゴリ１つを想定したテーマの場合、最初のテーマ名を返す
+    if ($isFirstOnly)
+      return $ret[0];
 
     return $ret;
   }
