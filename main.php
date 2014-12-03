@@ -302,6 +302,13 @@ class hykwWPData
     return $ret;
   }
 
+  # カテゴリの説明を取得($postid未指定ならカレント）
+  public static function get_category_description($postid = '')
+  {
+    return category_description($postid);
+  }
+
+
 
   ### 固定ページ関係
   private static function _get_PageObjValue_byPath($path, $key, $post_statuses = array('publish'))
