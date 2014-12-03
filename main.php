@@ -95,6 +95,16 @@ class hykwWPData
     return self::get_post_permalink();
   }
 
+  # 投稿のステータスを取得
+  public static function get_post_status($postid)
+  {
+    return get_post_status($postid);
+  }
+  public static function get_in_post_status()
+  {
+    return self::get_post_status('');
+  }
+
 
   # タイトルの取得
   public static function get_post_title($sep = '')
