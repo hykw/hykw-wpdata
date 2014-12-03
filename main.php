@@ -96,16 +96,25 @@ class hykwWPData
   }
 
   # 投稿のステータスを取得
-  public static function get_post_status($postid)
+  public static function get_post_status($postid = '')
   {
     return get_post_status($postid);
   }
   public static function get_in_post_status()
   {
-    return self::get_post_status('');
+    return self::get_post_status();
   }
 
-
+  # 投稿のpost_typeを取得
+  public static function get_post_type($postid = '')
+  {
+    return get_post_type($postid);
+  }
+  public static function get_in_post_type()
+  {
+    return self::get_post_type();
+  }
+  
   # タイトルの取得
   public static function get_post_title($sep = '')
   {
