@@ -308,6 +308,14 @@ class hykwWPData
     return category_description($postid);
   }
 
+  # 指定カテゴリIDの子カテゴリオブジェクトを返す（無指定なら全部）
+  public static function get_category_objects($parent_catid = '')
+  {
+    if ($parent_catid == '')
+      return get_categories();
+    else
+      return get_categories(array('child_of' => $parent_catid));
+  }
 
 
   ### 固定ページ関係
