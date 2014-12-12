@@ -260,9 +260,11 @@ class hykwWPData
 
   ### カテゴリ関係
   # 選択されたカテゴリ名を返す（選択されてない場合はFALSE)
-  public static function get_category_name()
+  public static function get_category_name($catid = FALSE)
   {
-    $catid = self::get_category_id();
+    if ($catid == FALSE)
+      $catid = self::get_category_id();
+
     if ($catid == FALSE)
       return FALSE;
 
