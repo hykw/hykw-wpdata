@@ -9,7 +9,7 @@ Plugin URI: https://github.com/hykw/hykw-wpdata
 Description: Wordpress のデータを取得する関数をラッパーしたクラス
 Author: hitoshi-hayakawa
 Version: 0.1
-*/
+ */
 
 class hykwWPData
 {
@@ -47,9 +47,9 @@ class hykwWPData
       call_user_func($funcName);
     else {
       if (!is_array($args))
-	$array_args = array($args);
+        $array_args = array($args);
       else
-	$array_args = $args;
+        $array_args = $args;
 
       call_user_func_array($funcName, $array_args);
     }
@@ -69,7 +69,7 @@ class hykwWPData
     return self::obget_echoFun('wp_footer');
   }
 
-  
+
   ### 投稿関係
   # 投稿のIDを取得
   public static function get_in_post_id()
@@ -114,7 +114,7 @@ class hykwWPData
   {
     return self::get_post_type();
   }
-  
+
   # タイトルの取得
   public static function get_post_title($sep = '')
   {
@@ -138,7 +138,7 @@ class hykwWPData
     $thum_id = get_post_thumbnail_id($postid);
     if (is_null($thum_id))   # サムネイル（アイキャッチ画像）は未設定
       return '';
-    
+
     $image = wp_get_attachment_image_src($thum_id, $size);
 
     return $image[0];
@@ -158,11 +158,11 @@ class hykwWPData
     /*
       自動整形機能を無効にしないと、apply_filters()のタイミングで
       勝手に整形(<br>や<p>が入る）されるので注意
-      
+
       # 自動整形機能を無効化
       remove_filter( 'the_content', 'wpautop' );
       remove_filter( 'the_excerpt', 'wpautop' );
-    */
+     */
 
     $contents = get_the_content();
     if ($isApplyFilter)
@@ -201,7 +201,7 @@ class hykwWPData
   {
     return get_the_time(get_option('date_format'));
   }
-  
+
   # カスタムフィールドの取得
   public static function get_post_meta($postid, $key, $single = TRUE)
   {
@@ -225,7 +225,7 @@ class hykwWPData
     else
       return get_the_category($postid);
   }
-  */
+   */
 
   # 投稿のカテゴリ名の取得(１つしか設定されてない場合、文字列で返す。複数の場合は配列)
   # $isParentOnly: TRUEなら、parent='0'(親カテゴリ)のみを対象とする
@@ -239,11 +239,11 @@ class hykwWPData
     $ret = array();
     foreach ($cats as $cat) {
       if ($isParentOnly) {
-	if ($cat->parent == 0) {
-	  array_push($ret, $cat->name);
-	}
+        if ($cat->parent == 0) {
+          array_push($ret, $cat->name);
+        }
       } else {
-	array_push($ret, $cat->name);
+        array_push($ret, $cat->name);
       }
     }
 
@@ -288,14 +288,14 @@ class hykwWPData
     else
       return $work->cat_name;
   }
-  
+
   # カテゴリ名からカテゴリIDを返す。
   # カテゴリ名がarrayの場合、カテゴリIDもarrayで返る
   # 取得できない時はFALSEを返す
   public static function get_category_id_byName($catnames)
   {
     $ret = array();
-    
+
     if (!is_array($catnames)) {
       $id = get_cat_ID($catnames);
       return ($id == 0) ? FALSE : $id;
@@ -304,7 +304,7 @@ class hykwWPData
     foreach ($catnames as $catname) {
       $id = get_cat_ID($catname);
       if ($id == 0)
-	$id = FALSE;
+        $id = FALSE;
 
       array_push($ret, $id);
     }
@@ -340,7 +340,7 @@ class hykwWPData
           break;
         }
       }
-      
+
       if ($bValid)
         return $work->$key;
     }
@@ -428,7 +428,7 @@ class hykwWPData
   {
     return self::_get_PageObjValue_byPath($path, 'post_title');
   }
-  
+
   # 指定URLのページの子ページの指定項目(array)を取得
   #  エラー時はFALSEを返す
   #  それ以外は、カテゴリ数分の連想配列で返す
@@ -442,17 +442,17 @@ class hykwWPData
           'post_title',
           'post_name',
       ));
-  */
+   */
   public static function get_page_children_byPath($path, $keys, $args = FALSE, $debug=FALSE)
   {
     $pageid = self::get_page_id_byPath($path);
 
     if ($args == FALSE) {
       $args = array(
-          'post_type' => 'page', 
-          'posts_per_page' => -1,
-          'order' => 'ASC',
-          'orderby' => 'menu_order',
+        'post_type' => 'page', 
+        'posts_per_page' => -1,
+        'order' => 'ASC',
+        'orderby' => 'menu_order',
       );
     }   
 
@@ -484,7 +484,7 @@ class hykwWPData
     return $ret;
   }
 
-  
+
   ### URL関係
   # style.cssのURLを返す
   public static function get_url_stylecss_parent($url = '', $ver = '')
@@ -531,7 +531,7 @@ class hykwWPData
   {
     return get_stylesheet_directory();
   }
-  
+
   ### アカウント関係
   # 指定名称のアカウントIDを取得
   public static function get_user_id_byName($username)
