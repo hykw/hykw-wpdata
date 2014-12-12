@@ -262,9 +262,19 @@ class hykwWPData
   # 選択されたカテゴリ名を返す（選択されてない場合はFALSE)
   public static function get_category_name()
   {
+    $catid = self::get_category_id();
+    if ($catid == FALSE)
+      return FALSE;
+
+    return get_cat_name($catid);
+  }
+
+  # 選択されたカテゴリのIDを返す（未選択時はFALSE)
+  public static function get_category_id()
+  {
     $catid = get_query_var('cat');
     if ($catid != '')
-      return get_cat_name($catid);
+      return $catid;
 
     return FALSE;
   }
