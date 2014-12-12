@@ -229,7 +229,8 @@ class hykwWPData
 
   # 投稿のカテゴリ名の取得(１つしか設定されてない場合、文字列で返す。複数の場合は配列)
   # $isParentOnly: TRUEなら、parent='0'(親カテゴリ)のみを対象とする
-  public static function get_post_categoryNames($postid = FALSE, $isFirstOnly = FALSE, $isParentOnly = FALSE)
+  # $isObjectReturn: TRUEなら、オブジェクトで返す
+  public static function get_post_categoryNames($postid = FALSE, $isFirstOnly = FALSE, $isParentOnly = FALSE, $isObjectReturn = FALSE)
   {
     if ($postid == FALSE)
       $cats = get_the_category();
@@ -240,10 +241,16 @@ class hykwWPData
     foreach ($cats as $cat) {
       if ($isParentOnly) {
         if ($cat->parent == 0) {
-          array_push($ret, $cat->name);
+          if ($isObjectReturn)
+            array_push($ret, $cat);
+          else
+            array_push($ret, $cat->name);
         }
       } else {
-        array_push($ret, $cat->name);
+        if ($isObjectReturn)
+          array_push($ret, $cat);
+        else
+          array_push($ret, $cat->name);
       }
     }
 
