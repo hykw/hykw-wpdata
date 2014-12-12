@@ -336,6 +336,11 @@ class hykwWPData
       return get_categories(array('child_of' => $parent_catid));
   }
 
+  # 指定カテゴリIDのURLを返す
+  public static function get_category_permalink($catid)
+  {
+    return get_category_link($catid);
+  }
 
   ### 固定ページ関係
   private static function _get_PageObjValue_byPath($path, $key, $post_statuses = array('publish'))
