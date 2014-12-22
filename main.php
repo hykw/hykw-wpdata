@@ -13,7 +13,7 @@ Version: 0.1
 
 class hykwWPData
 {
-  ### サイト関係
+  ############################## サイト関係
   # サイトの名称を取得
   public static function get_site_name()
   {
@@ -38,6 +38,7 @@ class hykwWPData
     return sprintf('%s%s', get_site_url(), $_SERVER['REQUEST_URI']);
   }
 
+  ############################## 汎用
   # echo しちゃう関数の結果を変数で受けとる
   public static function obget_echoFun($funcName, $args = false)
   {
@@ -70,7 +71,7 @@ class hykwWPData
   }
 
 
-  ### 投稿関係
+  ############################## 投稿関係
   # 投稿のIDを取得
   public static function get_in_post_id()
   {
@@ -214,7 +215,7 @@ class hykwWPData
   }
 
 
-
+  ############################## カテゴリ関係
   /*
 # http://wpdocs.sourceforge.jp/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%BF%E3%82%B0/get_the_category
   # カテゴリオブジェクトの配列を返す
@@ -342,7 +343,24 @@ class hykwWPData
     return get_category_link($catid);
   }
 
-  ### 固定ページ関係
+  ############################## タグ関係
+  # タグオブジェクトを返す（エラー時はFALSE)
+  public static function get_tags_byID($postid, $taxonomy = FALSE)
+  {
+    if ($taxonomy == FALSE)
+      $taxonomy = 'post_tag';
+
+    return get_the_terms($postid, $taxonomy);
+  }
+
+  public static function get_in_tags($taxonomy = FALSE)
+  {
+    $postid = self::get_in_post_id();
+    return self::get_tags_byID($postid, $taxonomy);
+  }
+
+
+  ############################## 固定ページ関係
   private static function _get_PageObjValue_byPath($path, $key, $post_statuses = array('publish'))
   {
     $work = get_page_by_path($path);
@@ -499,7 +517,7 @@ class hykwWPData
   }
 
 
-  ### URL関係
+  ############################## URL関係
   # style.cssのURLを返す
   public static function get_url_stylecss_parent($url = '', $ver = '')
   {
@@ -533,7 +551,7 @@ class hykwWPData
   }
 
 
-  ### ディレクトリ関係
+  ############################## ディレクトリ関係
   # 親テーマのディレクトリを返す
   public static function get_dir_template_parent()
   {
