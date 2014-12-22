@@ -344,13 +344,15 @@ class hykwWPData
   }
 
   ############################## タグ関係
-  # タグオブジェクトを返す（エラー時はFALSE)
+  # タグオブジェクトを返す
+  # エラー時はArray()を返す（FALSEを返すと、foreach()で回しづらい）
   public static function get_tags_byID($postid, $taxonomy = FALSE)
   {
     if ($taxonomy == FALSE)
       $taxonomy = 'post_tag';
 
-    return get_the_terms($postid, $taxonomy);
+    $ret = get_the_terms($postid, $taxonomy);
+    return ($ret == FALSE) ? Array() : $ret;
   }
 
   public static function get_in_tags($taxonomy = FALSE)
