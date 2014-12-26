@@ -322,13 +322,13 @@ class hykwWPData
     return $ret;
   }
 
-  # カテゴリの説明を取得($postid未指定ならカレント）
+  # カテゴリの説明を取得($catid未指定ならカレント）
   ### 勝手に <p>とかを付与されるので注意
   ### 不要なら、remove_filter()すること。
   ##### remove_filter('term_description','wpautop')
-  public static function get_category_description($postid = '')
+  public static function get_category_description($catid = '')
   {
-    return category_description($postid);
+    return category_description($catid);
   }
 
   # 指定カテゴリIDの子カテゴリオブジェクトを返す（無指定なら全部）
