@@ -326,9 +326,14 @@ class hykwWPData
   ### 勝手に <p>とかを付与されるので注意
   ### 不要なら、remove_filter()すること。
   ##### remove_filter('term_description','wpautop')
-  public static function get_category_description($catid = '')
+  public static function get_category_description($catid = '', $isStripChars = TRUE)
   {
-    return category_description($catid);
+    $desc = category_description($catid);
+
+    if ($isStripChars)
+      $desc = str_replace("\n", '', $desc);
+
+    return $desc;
   }
 
   # 指定カテゴリIDの子カテゴリオブジェクトを返す（無指定なら全部）
