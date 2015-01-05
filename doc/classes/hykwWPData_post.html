@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-146413657"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1967140973"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-146413657" class="accordion-body collapse in">
+            <div id="namespace-1967140973" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -301,7 +301,7 @@
                 
                                     <h4>Returns</h4>
                     integer
-                                            &mdash; <p>投稿ID(未選択時には不定の値を返すので注意)</p>
+                                            &mdash; <p>投稿ID(未選択時はFALSE）</p>
                                     				
                             </article>
         </div>
@@ -343,7 +343,7 @@ self::iget_permalink(FALSE)    # http://example.jp/archives/4
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>permalink(取得できない時は "")</p>
+                                            &mdash; <p>permalink(取得できない時は ""、投稿以外はFALSE)</p>
                                     				
                             </article>
         </div>
@@ -416,7 +416,7 @@ self::iget_permalink(FALSE)    # http://example.jp/archives/4
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>状態('publish', 'draft', 'trash', etc... 取得できない時は "")</p>
+                                            &mdash; <p>状態('publish', 'draft', 'trash', etc... 取得できない時は "", 投稿以外はFALSE)</p>
                                     				
                             </article>
         </div>
@@ -484,7 +484,7 @@ self::iget_permalink(FALSE)    # http://example.jp/archives/4
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>種類（'post', 'page', etc..., 取得できない時は "")</p>
+                                            &mdash; <p>種類（'post', 'page', etc..., 取得できない時は "", 投稿以外はFALSE)</p>
                                     				
                             </article>
         </div>
@@ -552,7 +552,7 @@ self::iget_permalink(FALSE)    # http://example.jp/archives/4
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>投稿のタイトル</p>
+                                            &mdash; <p>投稿のタイトル（投稿以外はFALSE)</p>
                                     				
                             </article>
         </div>
@@ -620,7 +620,7 @@ self::iget_permalink(FALSE)    # http://example.jp/archives/4
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>画像のURL(未設定なら"")</p>
+                                            &mdash; <p>画像のURL(未設定なら""、投稿以外はFALSE)</p>
                                     				
                             </article>
         </div>
@@ -745,7 +745,7 @@ remove_filter( 'the_excerpt', 'wpautop' );
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>投稿の本文</p>
+                                            &mdash; <p>投稿の本文、投稿以外はFALSE</p>
                                     				
                             </article>
         </div>
@@ -826,7 +826,7 @@ remove_filter( 'the_excerpt', 'wpautop' );
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>投稿の抜粋</p>
+                                            &mdash; <p>投稿の抜粋、投稿以外はFALSE</p>
                                     				
                             </article>
         </div>
@@ -904,7 +904,7 @@ $date = self::iget_postdate();    # '2014/12/28'
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>投稿日</p>
+                                            &mdash; <p>投稿日、投稿以外はFALSE</p>
                                     				
                             </article>
         </div>
@@ -980,7 +980,7 @@ $date = self::iget_postdate();    # '2014/12/28'
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>カスタムフィールドの値</p>
+                                            &mdash; <p>カスタムフィールドの値、投稿以外はFALSE</p>
                                     				
                             </article>
         </div>
@@ -1210,7 +1210,7 @@ $date = self::iget_postdate();    # '2014/12/28'
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on January 3rd, 2015 at 05:52.
+                    on January 5th, 2015 at 10:29.
                 </section>
             </section>
         </section>

@@ -47,11 +47,17 @@ class hykwWPData_category extends baseHykwWPData
    * 
    * @param array $keys 取得するデータのキー(FALSEなら全て)
    * @param boolean $isParentOnly TRUE:親カテゴリのみ取得対象とする, FALSE:全カテゴリ対象
-   * @return array カテゴリオブジェクト(配列に詰め替えしている)
+   * @return array カテゴリオブジェクト(配列に詰め替えしている)、エラー時はFALSE
    */
   public static function iget_post_objects($keys = FALSE, $isParentOnly = FALSE)
   {
+    if (!is_single())
+      return FALSE;
+
     $postid = hykwWPData_post::iget_id();
+    if ($postid == FALSE)
+      return FALSE;
+
     return self::get_post_objects($postid, $keys, $isParentOnly);
   }
 
@@ -109,11 +115,14 @@ class hykwWPData_category extends baseHykwWPData
     </pre>
 
    * @param array $keys 取得するデータのキー(FALSEなら全て)
-   * @return array カテゴリオブジェクト(連想配列)
+   * @return array カテゴリオブジェクト(連想配列)、未選択ならFALSE
    */
   public static function iget_objects($keys = FALSE)
   {
     $catid = self::iget_id();
+    if ($catid == FALSE)
+      return FALSE;
+
     return self::get_objects($catid, $keys);
   }
 
@@ -138,11 +147,14 @@ class hykwWPData_category extends baseHykwWPData
    * ※カテゴリをセットした投稿が0の場合、カテゴリが取得されないので注意
    * 
    * @param array $keys 取得するデータのキー(FALSEなら全て)
-   * @return array カテゴリオブジェクト(配列に詰め替えしている)
+   * @return array カテゴリオブジェクト(配列に詰め替えしている)、未選択ならFALSE
    */
   public static function iget_childObjects($keys = FALSE)
   {
     $catid = self::iget_id();
+    if ($catid == FALSE)
+      return FALSE;
+
     return self::get_childObjects($catid, $keys);
   }
 
@@ -175,11 +187,14 @@ class hykwWPData_category extends baseHykwWPData
   </pre>
 
    * @param boolean $isStripDomain TRUE:ドメイン部分は返さない, FALSE:ドメイン部分も含む
-   * @return string パーマリンク
+   * @return string パーマリンク、未選択ならFALSE
    */
   public static function iget_permalink($isStripDomain = TRUE)
   {
     $catid = self::iget_id();
+    if ($catid == FALSE)
+      return FALSE;
+
     return self::get_permalink($catid, $isStripDomain);
   }
 

@@ -40,10 +40,13 @@ class hykwWPData_tag extends baseHykwWPData
    * 
    * @param array $keys 取得するデータのキー(FALSEなら全て)
    * @param string $taxonomy 取得するタクソノミーの名前
-   * @return array タグオブジェクト(配列に詰め替えしている) タグ未設定時はArray()
+   * @return array タグオブジェクト(配列に詰め替えしている) タグ未設定時はArray()、投稿以外はFALSE
    */
   public static function iget_post_objects($keys = FALSE, $taxonomy = 'post_tag')
   {
+    if (!is_single())
+      return FALSE;
+
     $postid = hykwWPData_post::iget_id();
     return self::get_post_objects($postid, $keys, $taxonomy);
   }

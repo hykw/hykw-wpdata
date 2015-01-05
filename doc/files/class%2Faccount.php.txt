@@ -17,11 +17,18 @@ class hykwWPData_account extends baseHykwWPData
  </pre>
    * 
    * @param string $username アカウント名
-   * @return integer アカウントID
+   * @return integer アカウントID(取得できなかった時はFALSE)
    */
   public static function get_id($username)
   {
-    return get_user_by('login', $username)->ID;
+    if ($username == '')
+      return FALSE;
+
+    $userinfo = get_user_by('login', $username);
+    if ($userinfo == FALSE)
+      return FALSE;
+
+    return $userinfo->ID;
   }
 
 

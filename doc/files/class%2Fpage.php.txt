@@ -11,21 +11,27 @@ class hykwWPData_page extends baseHykwWPData
   /**
    * iget_id 選択されたページのIDを返す
    * 
-   * @return string ページID
+   * @return string ページID、未選択時はFALSE
    */
   public static function iget_id()
   {
+    if (!is_page())
+      return FALSE;
+
     return get_the_ID();
   }
 
   /**
    * iget_parent_id 選択されたページの親のIDを返す
    * 
-   * @return string 親ページID
+   * @return string 親ページID(未選択時はFALSE)
    */
   public static function iget_parent_id()
   {
     $pageid = self::iget_id();
+    if ($pageid == FALSE)
+      return FALSE;
+
     return self::get_parent_id($pageid);
   }
 
@@ -33,22 +39,28 @@ class hykwWPData_page extends baseHykwWPData
    * get_parent_id 指定IDのページの親のIDを返す
    * 
    * @param integer $pageid_child 子ページのID
-   * @return string 親ページID(子ページが無い場合はFALSE)
+   * @return string 親ページID(親ページが無い場合はFALSE)
    */
   public static function get_parent_id($pageid_child)
   {
     $parent_id = self::get_objects(FALSE, $pageid_child, array('post_parent'));
+    if ($parent_id == FALSE)
+      return FALSE;
+
     return $parent_id['post_parent'];
   }
 
   /**
    * iget_children_ids 選択中の固定ページの子のIDを返す
    * 
-   * @return array 子のID
+   * @return array 子のID（未選択ならFALSE)
    */
   public static function iget_children_ids()
   {
     $pageid = self::iget_id();
+    if ($pageid == FALSE)
+      return FALSE;
+
     return self::get_children_ids($pageid);
   }
 
@@ -56,7 +68,7 @@ class hykwWPData_page extends baseHykwWPData
    * get_children_ids 指定IDの固定ページの子のIDを返す
    * 
    * @param integer $pageid 親ページのID
-   * @return array 子のID
+   * @return array 子のID、子が無ければFALSE
    */
   public static function get_children_ids($pageid)
   {
@@ -122,11 +134,14 @@ class hykwWPData_page extends baseHykwWPData
          => ['ID' => 10, 'post_name'=> 'static1']
    </pre>
    * 
-   * @return array ページオブジェクト（取得失敗（不正なURL?）時はFALSE）
+   * @return array ページオブジェクト（取得失敗（不正なURL?）時、あるいは固定ページじゃない時ははFALSE）
    */
 
   public static function iget_objects($keys = FALSE)
   {
+    if (!is_page())
+      return FALSE;
+
     $url = hykwWPData_url::get_requestURL(FALSE);
     return self::get_objects($url, FALSE, $keys);
   }
@@ -169,10 +184,13 @@ class hykwWPData_page extends baseHykwWPData
   </pre>
    * 
    * @param boolean $isStripDomain TRUE:ドメイン部分は返さない, FALSE:ドメイン部分も含む
-   * @return string permalink(取得できない時は "")
+   * @return string permalink(取得できない時は "")、固定ページじゃない時はFALSE
    */
   public static function iget_permalink($isStripDomain = TRUE)
   {
+    if (!is_page())
+      return FALSE;
+
     $url = hykwWPData_url::get_requestURL(FALSE);
     if ($isStripDomain)
       return $url;
@@ -199,10 +217,14 @@ class hykwWPData_page extends baseHykwWPData
   /**
    * iget_title 選択中のページのタイトルを返す
    * 
-   * @return string タイトル
+   * @return string タイトル（固定ページじゃない時はFALSE)
    */
   public static function iget_title()
   {
+
+    if (!is_page())
+      return FALSE;
+
     $url = hykwWPData_url::get_requestURL(FALSE);
     $ret = self::get_objects($url, FALSE, array('post_title'));
     return $ret['post_title'];

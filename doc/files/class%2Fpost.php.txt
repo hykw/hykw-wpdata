@@ -10,10 +10,13 @@ class hykwWPData_post extends baseHykwWPData
   /**
    * iget_id 選択された投稿のIDを返す(i stands for in the loop)
    * 
-   * @return integer 投稿ID(未選択時には不定の値を返すので注意)
+   * @return integer 投稿ID(未選択時はFALSE）
    */
   public static function iget_id()
   {
+    if (!is_single())
+      return FALSE;
+
     return get_the_ID();
   }
 
@@ -27,11 +30,14 @@ class hykwWPData_post extends baseHykwWPData
   </pre>
    * 
    * @param boolean $isStripDomain TRUE:ドメイン部分は返さない, FALSE:ドメイン部分も含む
-   * @return string permalink(取得できない時は "")
+   * @return string permalink(取得できない時は ""、投稿以外はFALSE)
    */
   public static function iget_permalink($isStripDomain = TRUE)
   {
     $postid = self::iget_id();
+    if ($postid == FALSE)
+      return FALSE;
+
     return self::get_permalink($postid, $isStripDomain);
   }
 
@@ -54,11 +60,14 @@ class hykwWPData_post extends baseHykwWPData
   /**
    * iget_status 投稿の状態を返す
    * 
-   * @return string 状態('publish', 'draft', 'trash', etc... 取得できない時は "")
+   * @return string 状態('publish', 'draft', 'trash', etc... 取得できない時は "", 投稿以外はFALSE)
    */
   public static function iget_status()
   {
     $postid = self::iget_id();
+    if ($postid == FALSE)
+      return FALSE;
+
     return self::get_status($postid);
   }
 
@@ -76,11 +85,14 @@ class hykwWPData_post extends baseHykwWPData
   /**
    * iget_type 投稿の種類を返す
    * 
-   * @return string 種類（'post', 'page', etc..., 取得できない時は "")
+   * @return string 種類（'post', 'page', etc..., 取得できない時は "", 投稿以外はFALSE)
    */
   public static function iget_type()
   {
     $postid = self::iget_id();
+    if ($postid == FALSE)
+      return FALSE;
+
     return self::get_type($postid);
   }
 
@@ -97,10 +109,13 @@ class hykwWPData_post extends baseHykwWPData
 
   /**
    * iget_title 投稿のタイトルを返す
-   * @return string 投稿のタイトル
+   * @return string 投稿のタイトル（投稿以外はFALSE)
    */
   public static function iget_title()
   {
+    if (!is_single())
+      return FALSE;
+
     return trim(wp_title(' ', FALSE));
   }
 
@@ -119,11 +134,14 @@ class hykwWPData_post extends baseHykwWPData
   /**
    * iget_thumbnail_url 投稿の添付画像のURLを返す
    * 
-   * @return string 画像のURL(未設定なら"")
+   * @return string 画像のURL(未設定なら""、投稿以外はFALSE)
    */
   public static function iget_thumbnail_url()
   {
     $postid = self::iget_id();
+    if ($postid == FALSE)
+      return FALSE;
+
     return self::get_thumbnail_url($postid);
   }
 
@@ -170,11 +188,14 @@ class hykwWPData_post extends baseHykwWPData
      </pre>
    * 
    * @param bool $isApplyFilter_content TRUE: apply_filters('the_content')を通す, FALSE: 通さない
-   * @return string 投稿の本文
+   * @return string 投稿の本文、投稿以外はFALSE
    */
   public static function iget_content($isApplyFilter_content = TRUE)
   {
     $postid = self::iget_id();
+    if ($postid == FALSE)
+      return FALSE;
+
     return self::get_content($postid, $isApplyFilter_content);
   }
 
@@ -205,11 +226,14 @@ class hykwWPData_post extends baseHykwWPData
    * iget_excerpt 投稿の抜粋を返す
    * 
    * @param bool $isStripContentOnEmpty TRUE:抜粋が空の場合、本文から作成して返す, FALSE:空のまま返す
-   * @return string 投稿の抜粋
+   * @return string 投稿の抜粋、投稿以外はFALSE
    */
   public static function iget_excerpt($isStripContentOnEmpty = TRUE)
   {
     $postid = self::iget_id();
+    if ($postid == FALSE)
+      return FALSE;
+
     return self::get_excerpt($postid, $isStripContentOnEmpty);
   }
   /**
@@ -247,11 +271,14 @@ class hykwWPData_post extends baseHykwWPData
    $date = self::iget_postdate();    # '2014/12/28'
    </pre> 
    * 
-   * @return string 投稿日
+   * @return string 投稿日、投稿以外はFALSE
    */
   public static function iget_postdate()
   {
     $postid = self::iget_id();
+    if ($postid == FALSE)
+      return FALSE;
+
     return self::get_postdate($postid);
   }
 
@@ -270,11 +297,14 @@ class hykwWPData_post extends baseHykwWPData
    * iget_postmeta 投稿の指定キーのカスタムフィールドの値を返す
    * 
    * @param string $key カスタムフィールドの名前
-   * @return string カスタムフィールドの値
+   * @return string カスタムフィールドの値、投稿以外はFALSE
    */
   public static function iget_postmeta($key)
   {
     $postid = self::iget_id();
+    if ($postid == FALSE)
+      return FALSE;
+
     return self::get_postmeta($postid, $key);
   }
 

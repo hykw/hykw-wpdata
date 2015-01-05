@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1388343719"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-956280224"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1388343719" class="accordion-body collapse in">
+            <div id="namespace-956280224" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -292,7 +292,7 @@
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>ページID</p>
+                                            &mdash; <p>ページID、未選択時はFALSE</p>
                                     				
                             </article>
         </div>
@@ -322,7 +322,7 @@
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>親ページID</p>
+                                            &mdash; <p>親ページID(未選択時はFALSE)</p>
                                     				
                             </article>
         </div>
@@ -360,7 +360,7 @@
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>親ページID(子ページが無い場合はFALSE)</p>
+                                            &mdash; <p>親ページID(親ページが無い場合はFALSE)</p>
                                     				
                             </article>
         </div>
@@ -390,7 +390,7 @@
                 
                                     <h4>Returns</h4>
                     array
-                                            &mdash; <p>子のID</p>
+                                            &mdash; <p>子のID（未選択ならFALSE)</p>
                                     				
                             </article>
         </div>
@@ -428,7 +428,7 @@
                 
                                     <h4>Returns</h4>
                     array
-                                            &mdash; <p>子のID</p>
+                                            &mdash; <p>子のID、子が無ければFALSE</p>
                                     				
                             </article>
         </div>
@@ -497,7 +497,7 @@ $ret = self::iget_objects(array('ID', 'post_name'));
                 
                                     <h4>Returns</h4>
                     array
-                                            &mdash; <p>ページオブジェクト（取得失敗（不正なURL?）時はFALSE）</p>
+                                            &mdash; <p>ページオブジェクト（取得失敗（不正なURL?）時、あるいは固定ページじゃない時ははFALSE）</p>
                                     				
                             </article>
         </div>
@@ -587,7 +587,7 @@ self::iget_permalink(FALSE)    # http://example.jp/page1
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>permalink(取得できない時は "")</p>
+                                            &mdash; <p>permalink(取得できない時は "")、固定ページじゃない時はFALSE</p>
                                     				
                             </article>
         </div>
@@ -660,7 +660,7 @@ self::iget_permalink(FALSE)    # http://example.jp/page1
                 
                                     <h4>Returns</h4>
                     string
-                                            &mdash; <p>タイトル</p>
+                                            &mdash; <p>タイトル（固定ページじゃない時はFALSE)</p>
                                     				
                             </article>
         </div>
@@ -890,7 +890,7 @@ self::iget_permalink(FALSE)    # http://example.jp/page1
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on January 3rd, 2015 at 05:52.
+                    on January 5th, 2015 at 10:29.
                 </section>
             </section>
         </section>
