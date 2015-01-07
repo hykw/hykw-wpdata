@@ -25,8 +25,52 @@ class baseHykwWPData
 {
   /**
    * _trimOnlySpecifiedObjects （内部用）指定キーのデータだけ返す
+   * 
+   * $catobjの例
+   <pre>
+  (
+    [0] => WP_Post Object
+        (
+            [ID] => 10
+            [post_author] => 1
+            [post_date] => 2014-12-28 11:00:04
+            [post_date_gmt] => 2014-12-28 11:00:04
+            [post_content] => あああああ
+            [post_title] => 固定ページ１
+            [post_excerpt] => 
+            [post_status] => publish
+            [comment_status] => open
+            [ping_status] => open
+            [post_password] => 
+            [post_name] => static1
+            [to_ping] => 
+            [pinged] => 
+            [post_modified] => 2014-12-29 13:55:32
+            [post_modified_gmt] => 2014-12-29 13:55:32
+            [post_content_filtered] => 
+            [post_parent] => 2119
+            [guid] => http://wptest.comedical.jp/?page_id=10
+            [menu_order] => 0
+            [post_type] => page
+            [post_mime_type] => 
+            [comment_count] => 0
+            [filter] => raw
+        )
+  )
+   </pre>
    *
-   *  hykwWPData_categoryとhykwWPData_tagから利用している
+   * $keysの例
+   <pre>
+   Array
+   (
+       [0] => ID
+       [1] => post_name
+   )
+   </pre>
+   * 
+   * @param array $catobj trimする元データ
+   * @param array $keys 取得する（残す）キー
+   * @return string
    */
   protected static function _trimOnlySpecifiedObjects($catobj, $keys)
   {

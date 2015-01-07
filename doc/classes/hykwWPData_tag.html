@@ -106,7 +106,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">160</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">159</span>
                                 </a>
                             </li>
                             <li>
@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2136982983"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1083060214"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-2136982983" class="accordion-body collapse in">
+            <div id="namespace-1083060214" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -388,26 +388,67 @@ $ret = self::iget_post_objects(array('term_id', 'name'));
             <article class="method">
                 <h3 class="protected ">_trimOnlySpecifiedObjects()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_trimOnlySpecifiedObjects(  <span class="argument">$catobj</span>,   <span class="argument">$keys</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">_trimOnlySpecifiedObjects(array  <span class="argument">$catobj</span>, array  <span class="argument">$keys</span>) : string</pre>
                 <p><em>_trimOnlySpecifiedObjects （内部用）指定キーのデータだけ返す</em></p>
-                <p>hykwWPData_categoryとhykwWPData_tagから利用している</p>
+                <p>$catobjの例</p>
+<pre>
+(
+[0] => WP_Post Object
+(
+[ID] => 10
+[post_author] => 1
+[post_date] => 2014-12-28 11:00:04
+[post_date_gmt] => 2014-12-28 11:00:04
+[post_content] => あああああ
+[post_title] => 固定ページ１
+[post_excerpt] =>
+[post_status] => publish
+[comment_status] => open
+[ping_status] => open
+[post_password] =>
+[post_name] => static1
+[to_ping] =>
+[pinged] =>
+[post_modified] => 2014-12-29 13:55:32
+[post_modified_gmt] => 2014-12-29 13:55:32
+[post_content_filtered] =>
+[post_parent] => 2119
+[guid] => http://wptest.comedical.jp/?page_id=10
+[menu_order] => 0
+[post_type] => page
+[post_mime_type] =>
+[comment_count] => 0
+[filter] => raw
+)
+)
+</pre>
+<p>$keysの例</p>
+<pre>
+Array
+(
+[0] => ID
+[1] => post_name
+)
+</pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>array</td>
                                 <td>$catobj </td>
-                                <td></td>
+                                <td><p>trimする元データ</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>array</td>
                                 <td>$keys </td>
-                                <td></td>
+                                <td><p>取得する（残す）キー</p></td>
                             </tr>
                                             </table>
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -553,7 +594,7 @@ $ret = self::iget_post_objects(array('term_id', 'name'));
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on January 5th, 2015 at 10:29.
+                    on January 7th, 2015 at 07:09.
                 </section>
             </section>
         </section>
