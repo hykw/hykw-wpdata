@@ -11,7 +11,7 @@ class hykwWPData_page extends baseHykwWPData
   /**
    * iget_id 選択されたページのIDを返す
    * 
-   * @return string ページID、未選択時はFALSE
+   * @return integer ページID、未選択時はFALSE
    */
   public static function iget_id()
   {
@@ -24,7 +24,7 @@ class hykwWPData_page extends baseHykwWPData
   /**
    * iget_parent_id 選択されたページの親のIDを返す
    * 
-   * @return string 親ページID(未選択時はFALSE)
+   * @return integer 親ページID(未選択時はFALSE)
    */
   public static function iget_parent_id()
   {
@@ -39,7 +39,7 @@ class hykwWPData_page extends baseHykwWPData
    * get_parent_id 指定IDのページの親のIDを返す
    * 
    * @param integer $pageid_child 子ページのID
-   * @return string 親ページID(親ページが無い場合はFALSE)
+   * @return integer 親ページID(親ページが無い場合はFALSE)
    */
   public static function get_parent_id($pageid_child)
   {
@@ -150,7 +150,7 @@ class hykwWPData_page extends baseHykwWPData
    * get_objects 指定URL/IDの固定ページのオブジェクトを返す
    * 
    * @param string $url 取得する固定ページのURL(idで指定する時はFALSE)
-   * @param string $pageid 取得する固定ページのID(URLで指定する時はFALSE)
+   * @param integer $pageid 取得する固定ページのID(URLで指定する時はFALSE)
    * @param array $keys 取得するデータのキー(FALSEなら全て)
    * @return array ページオブジェクト（取得失敗（不正なURL?）時はFALSE）
    */
@@ -234,7 +234,7 @@ class hykwWPData_page extends baseHykwWPData
    * get_title 指定URL/IDのタイトルを返す
    * 
    * @param string $url 取得する固定ページのURL(idで指定する時はFALSE)
-   * @param string $pageid 取得する固定ページのID(URLで指定する時はFALSE)
+   * @param integer $pageid 取得する固定ページのID(URLで指定する時はFALSE)
    * @return string タイトル
    */
   public static function get_title($url = FALSE, $pageid = FALSE)

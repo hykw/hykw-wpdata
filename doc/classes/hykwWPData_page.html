@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-776532083"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-684511171"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-776532083" class="accordion-body collapse in">
+            <div id="namespace-684511171" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -285,14 +285,14 @@
             <article class="method">
                 <h3 class="public ">iget_id()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">iget_id() : string</pre>
+                <pre class="signature" style="margin-right: 54px;">iget_id() : integer</pre>
                 <p><em>iget_id 選択されたページのIDを返す</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    string
+                    integer
                                             &mdash; <p>ページID、未選択時はFALSE</p>
                                     				
                             </article>
@@ -315,14 +315,14 @@
             <article class="method">
                 <h3 class="public ">iget_parent_id()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">iget_parent_id() : string</pre>
+                <pre class="signature" style="margin-right: 54px;">iget_parent_id() : integer</pre>
                 <p><em>iget_parent_id 選択されたページの親のIDを返す</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    string
+                    integer
                                             &mdash; <p>親ページID(未選択時はFALSE)</p>
                                     				
                             </article>
@@ -345,7 +345,7 @@
             <article class="method">
                 <h3 class="public ">get_parent_id()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_parent_id(integer  <span class="argument">$pageid_child</span>) : string</pre>
+                <pre class="signature" style="margin-right: 54px;">get_parent_id(integer  <span class="argument">$pageid_child</span>) : integer</pre>
                 <p><em>get_parent_id 指定IDのページの親のIDを返す</em></p>
                 
 
@@ -360,7 +360,7 @@
                 
                 
                                     <h4>Returns</h4>
-                    string
+                    integer
                                             &mdash; <p>親ページID(親ページが無い場合はFALSE)</p>
                                     				
                             </article>
@@ -520,7 +520,7 @@ $ret = self::iget_objects(array('ID', 'post_name'));
             <article class="method">
                 <h3 class="public ">get_objects()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_objects(string  <span class="argument">$url = FALSE</span>, string  <span class="argument">$pageid = FALSE</span>, array  <span class="argument">$keys = FALSE</span>) : array</pre>
+                <pre class="signature" style="margin-right: 54px;">get_objects(string  <span class="argument">$url = FALSE</span>, integer  <span class="argument">$pageid = FALSE</span>, array  <span class="argument">$keys = FALSE</span>) : array</pre>
                 <p><em>get_objects 指定URL/IDの固定ページのオブジェクトを返す</em></p>
                 
 
@@ -532,7 +532,7 @@ $ret = self::iget_objects(array('ID', 'post_name'));
                                 <td><p>取得する固定ページのURL(idで指定する時はFALSE)</p></td>
                             </tr>
                                                     <tr>
-                                <td>string</td>
+                                <td>integer</td>
                                 <td>$pageid </td>
                                 <td><p>取得する固定ページのID(URLで指定する時はFALSE)</p></td>
                             </tr>
@@ -683,7 +683,7 @@ self::iget_permalink(FALSE)    # http://example.jp/page1
             <article class="method">
                 <h3 class="public ">get_title()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_title(string  <span class="argument">$url = FALSE</span>, string  <span class="argument">$pageid = FALSE</span>) : string</pre>
+                <pre class="signature" style="margin-right: 54px;">get_title(string  <span class="argument">$url = FALSE</span>, integer  <span class="argument">$pageid = FALSE</span>) : string</pre>
                 <p><em>get_title 指定URL/IDのタイトルを返す</em></p>
                 
 
@@ -695,7 +695,7 @@ self::iget_permalink(FALSE)    # http://example.jp/page1
                                 <td><p>取得する固定ページのURL(idで指定する時はFALSE)</p></td>
                             </tr>
                                                     <tr>
-                                <td>string</td>
+                                <td>integer</td>
                                 <td>$pageid </td>
                                 <td><p>取得する固定ページのID(URLで指定する時はFALSE)</p></td>
                             </tr>
@@ -932,7 +932,7 @@ Array
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on January 10th, 2015 at 05:02.
+                    on January 10th, 2015 at 05:12.
                 </section>
             </section>
         </section>
