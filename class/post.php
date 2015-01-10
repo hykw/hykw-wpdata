@@ -134,26 +134,28 @@ class hykwWPData_post extends baseHykwWPData
   /**
    * iget_thumbnail_url 投稿の添付画像のURLを返す
    * 
+   * @param string $size 画像の大きさ
    * @return string 画像のURL(未設定なら""、投稿以外はFALSE)
    */
-  public static function iget_thumbnail_url()
+  public static function iget_thumbnail_url($size = 'thumbnail')
   {
     $postid = self::iget_id();
     if ($postid == FALSE)
       return FALSE;
 
-    return self::get_thumbnail_url($postid);
+    return self::get_thumbnail_url($postid, $size);
   }
 
   /**
    * get_thumbnail_url 指定IDの投稿の添付画像のURLを返す
    * 
    * @param integer $postid 投稿ID
+   * @param string $size 画像の大きさ
    * @return string 画像のURL(未設定なら"")
    */
-  public static function get_thumbnail_url($postid)
+  public static function get_thumbnail_url($postid, $size = 'thumbnail')
   {
-    $ret = self::get_thumbnail_obj($postid);
+    $ret = self::get_thumbnail_obj($postid, $size);
     return ($ret == FALSE) ? '' : $ret[0];
   }
 
