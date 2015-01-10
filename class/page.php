@@ -134,7 +134,7 @@ class hykwWPData_page extends baseHykwWPData
          => ['ID' => 10, 'post_name'=> 'static1']
    </pre>
    * 
-   * @return array ページオブジェクト（取得失敗（不正なURL?）時、あるいは固定ページじゃない時ははFALSE）
+   * @return array ページオブジェクト（取得失敗（不正なURL?）時、あるいは固定ページじゃない時はFALSE）
    */
 
   public static function iget_objects($keys = FALSE)
