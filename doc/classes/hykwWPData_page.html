@@ -106,7 +106,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">162</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">165</span>
                                 </a>
                             </li>
                             <li>
@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-684511171"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-168347320"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-684511171" class="accordion-body collapse in">
+            <div id="namespace-168347320" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -199,10 +199,14 @@
                                                                     <a href="../classes/hykwWPData_page.html#method_get_children_ids" class="">get_children_ids()</a><br />
                                                                     <a href="../classes/hykwWPData_page.html#method_iget_objects" class="">iget_objects()</a><br />
                                                                     <a href="../classes/hykwWPData_page.html#method_get_objects" class="">get_objects()</a><br />
+                                                                    <a href="../classes/hykwWPData_page.html#method_iget_object" class="">iget_object()</a><br />
+                                                                    <a href="../classes/hykwWPData_page.html#method_get_object" class="">get_object()</a><br />
                                                                     <a href="../classes/hykwWPData_page.html#method_iget_permalink" class="">iget_permalink()</a><br />
                                                                     <a href="../classes/hykwWPData_page.html#method_get_permalink" class="">get_permalink()</a><br />
                                                                     <a href="../classes/hykwWPData_page.html#method_iget_title" class="">iget_title()</a><br />
                                                                     <a href="../classes/hykwWPData_page.html#method_get_title" class="">get_title()</a><br />
+                                                                    <a href="../classes/hykwWPData_page.html#method_iget_contents" class="">iget_contents()</a><br />
+                                                                    <a href="../classes/hykwWPData_page.html#method_get_contents" class="">get_contents()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No public properties found</em>
@@ -498,7 +502,7 @@ $ret = self::iget_objects(array('ID', 'post_name'));
                 
                                     <h4>Returns</h4>
                     array
-                                            &mdash; <p>ページオブジェクト（取得失敗（不正なURL?）時、あるいは固定ページじゃない時ははFALSE）</p>
+                                            &mdash; <p>ページオブジェクト（取得失敗（不正なURL?）時、あるいは固定ページじゃない時はFALSE）</p>
                                     				
                             </article>
         </div>
@@ -547,6 +551,96 @@ $ret = self::iget_objects(array('ID', 'post_name'));
                                     <h4>Returns</h4>
                     array
                                             &mdash; <p>ページオブジェクト（取得失敗（不正なURL?）時はFALSE）</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_iget_object" name="method_iget_object" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">iget_object()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">iget_object(string  <span class="argument">$key</span>) : mixed</pre>
+                <p><em>iget_object 選択中の固定ページの指定オブジェクトを返す（非配列版）</em></p>
+                <p>呼び出し例）</p>
+<pre>
+$ret = self::iget_object('post_name');
+=> 'static1'
+</pre>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>取得するオブジェクトのキー</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>オブジェクトの値(エラーはFALSE)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_object" name="method_get_object" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get_object()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_object(string  <span class="argument">$key</span>, string  <span class="argument">$url = FALSE</span>, integer  <span class="argument">$pageid = FALSE</span>) : mixed</pre>
+                <p><em>get_object 指定URL/IDの固定ページの指定オブジェクトを返す（非配列版）</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>取得するオブジェクトのキー</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$url </td>
+                                <td><p>取得する固定ページのURL(idで指定する時はFALSE)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$pageid </td>
+                                <td><p>取得する固定ページのID(URLで指定する時はFALSE)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>オブジェクトの値(エラーはFALSE)</p>
                                     				
                             </article>
         </div>
@@ -705,6 +799,79 @@ self::iget_permalink(FALSE)    # http://example.jp/page1
                                     <h4>Returns</h4>
                     string
                                             &mdash; <p>タイトル</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_iget_contents" name="method_iget_contents" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">iget_contents()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">iget_contents() : string</pre>
+                <p><em>iget_title 選択中のページのコンテンツを返す</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>コンテンツ(固定ページじゃない時はFALSE)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_contents" name="method_get_contents" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get_contents()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_contents(string  <span class="argument">$url = FALSE</span>, integer  <span class="argument">$pageid = FALSE</span>) : string</pre>
+                <p><em>get_title 指定URL/IDのコンテンツを返す</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$url </td>
+                                <td><p>取得する固定ページのURL(idで指定する時はFALSE)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$pageid </td>
+                                <td><p>取得する固定ページのID(URLで指定する時はFALSE)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>コンテンツ</p>
                                     				
                             </article>
         </div>
@@ -932,7 +1099,7 @@ Array
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on January 10th, 2015 at 05:12.
+                    on January 16th, 2015 at 09:51.
                 </section>
             </section>
         </section>

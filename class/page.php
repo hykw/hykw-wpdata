@@ -175,6 +175,50 @@ class hykwWPData_page extends baseHykwWPData
   }
 
   /**
+   * iget_object 選択中の固定ページの指定オブジェクトを返す（非配列版）
+   * 
+    呼び出し例）
+    <pre>
+      $ret = self::iget_object('post_name');
+         => 'static1'
+   </pre>
+   * 
+   * @param string $key 取得するオブジェクトのキー
+   * @return mixed オブジェクトの値(エラーはFALSE)
+   */
+  public static function iget_object($key)
+  {
+    if (!is_page())
+      return FALSE;
+
+    $url = hykwWPData_url::get_requestURL(FALSE);
+    $ret = self::get_object($key, $url, FALSE);
+    return $ret;
+  }
+
+  /**
+   * get_object 指定URL/IDの固定ページの指定オブジェクトを返す（非配列版）
+   * 
+   * @param string $key 取得するオブジェクトのキー
+   * @param string $url 取得する固定ページのURL(idで指定する時はFALSE)
+   * @param integer $pageid 取得する固定ページのID(URLで指定する時はFALSE)
+
+   * @return mixed オブジェクトの値(エラーはFALSE)
+   */
+  public static function get_object($key, $url = FALSE, $pageid = FALSE)
+  {
+    if (!is_page())
+      return FALSE;
+
+    if (  ($url == FALSE) && ($pageid == FALSE) )
+      return FALSE;
+
+    $ret = self::get_objects($url, $pageid, array($key));
+    return $ret[$key];
+  }
+
+
+  /**
    * iget_permalink 選択中の固定ページのURLを返す
    *
    実行例）
@@ -221,13 +265,8 @@ class hykwWPData_page extends baseHykwWPData
    */
   public static function iget_title()
   {
-
-    if (!is_page())
-      return FALSE;
-
-    $url = hykwWPData_url::get_requestURL(FALSE);
-    $ret = self::get_objects($url, FALSE, array('post_title'));
-    return $ret['post_title'];
+    $ret = self::iget_object('post_title');
+    return $ret;
   }
 
   /**
@@ -239,11 +278,32 @@ class hykwWPData_page extends baseHykwWPData
    */
   public static function get_title($url = FALSE, $pageid = FALSE)
   {
-    if (  ($url == FALSE) && ($pageid == FALSE) )
-      return '';
+    $ret = self::get_object('post_title', $url, $pageid);
+    return $ret;
+  }
 
-    $ret = self::get_objects($url, $pageid, array('post_title'));
-    return $ret['post_title'];
+  /**
+   * iget_title 選択中のページのコンテンツを返す
+   * 
+   * @return string コンテンツ(固定ページじゃない時はFALSE)
+   */
+  public static function iget_contents()
+  {
+    $ret = self::iget_object('post_content');
+    return $ret;
+  }
+
+  /**
+   * get_title 指定URL/IDのコンテンツを返す
+   * 
+   * @param string $url 取得する固定ページのURL(idで指定する時はFALSE)
+   * @param integer $pageid 取得する固定ページのID(URLで指定する時はFALSE)
+   * @return string コンテンツ
+   */
+  public static function get_contents($url = FALSE, $pageid = FALSE)
+  {
+    $ret = self::get_object('post_content', $url, $pageid);
+    return $ret;
   }
 
 }
