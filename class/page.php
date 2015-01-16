@@ -207,9 +207,6 @@ class hykwWPData_page extends baseHykwWPData
    */
   public static function get_object($key, $url = FALSE, $pageid = FALSE)
   {
-    if (!is_page())
-      return FALSE;
-
     if (  ($url == FALSE) && ($pageid == FALSE) )
       return FALSE;
 
@@ -303,6 +300,34 @@ class hykwWPData_page extends baseHykwWPData
   public static function get_contents($url = FALSE, $pageid = FALSE)
   {
     $ret = self::get_object('post_content', $url, $pageid);
+    return $ret;
+  }
+
+
+  /**
+   * iget_date 選択中のページの投稿日を返す
+   * 
+   * @return string 投稿日（取得出来ない時や固定ページじゃない時はFALSE)
+   */
+  public static function iget_date()
+  {
+    if (!is_page())
+      return FALSE;
+
+    $pageid = self::iget_id();
+    $ret = self::get_date($pageid);
+    return $ret;
+  }
+
+  /**
+   * get_date 指定URL/IDの投稿日を返す
+   * 
+   * @param integer $pageid ページID
+   * @return string 投稿日（取得出来ない時はFALSE)
+   */
+  public static function get_date($pageid = null)
+  {
+    $ret = get_the_time(get_option('date_format'), $pageid);
     return $ret;
   }
 
