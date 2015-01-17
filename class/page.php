@@ -286,20 +286,26 @@ class hykwWPData_page extends baseHykwWPData
    */
   public static function iget_contents()
   {
-    $ret = self::iget_object('post_content');
+    $url = hykwWPData_url::get_requestURL(FALSE);
+    $ret = self::get_contents($url, FALSE);
     return $ret;
   }
 
   /**
-   * get_title 指定URL/IDのコンテンツを返す
+   * get_contents 指定URL/IDのコンテンツを返す
    * 
+   *   自動整形機能を無効にしないと、apply_filters()のタイミングで
+   *   勝手に整形(&lt;br&gt;や&lt;p&gt;が入る）されるので注意
+   *
    * @param string $url 取得する固定ページのURL(idで指定する時はFALSE)
    * @param integer $pageid 取得する固定ページのID(URLで指定する時はFALSE)
    * @return string コンテンツ
    */
   public static function get_contents($url = FALSE, $pageid = FALSE)
   {
-    $ret = self::get_object('post_content', $url, $pageid);
+    $contents = self::get_object('post_content', $url, $pageid);
+    $ret = apply_filters('the_content', $contents);
+
     return $ret;
   }
 
