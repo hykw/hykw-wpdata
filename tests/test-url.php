@@ -5,7 +5,7 @@ class UT_hykwWPData_url extends WP_UnitTestCase {
   {
     parent::setUp();
 
-    switch_theme('ut.child');
+    switch_theme('wptest');
   }
 
   public function tearDown()
@@ -20,8 +20,13 @@ class UT_hykwWPData_url extends WP_UnitTestCase {
     $work = explode('/', hykwWPData_url::get_themeURL(hykwWPData_url::DIR_CHILD));
     $dir_child = $work[5];
 
-    $this->assertEquals('ut.parent', $dir_parent);
-    $this->assertEquals('ut.child', $dir_child);
+    $this->assertEquals('wptest.parent', $dir_parent);
+    $this->assertEquals('wptest', $dir_child);
+  }
+
+  public function test_get_domainName()
+  {
+    $this->assertEquals('http://wptest.comedical.jp', hykwWPData_url::get_domainName());
   }
 
   public function test_get_requestURL()
@@ -46,9 +51,9 @@ class UT_hykwWPData_url extends WP_UnitTestCase {
   public function test_get_thisurl()
   {
     $this->go_to('/archives/2?code=3');
-    $this->assertEquals('http://ut.comedical.jp/archives/2', hykwWPData_url::get_thisurl());
-    $this->assertEquals('http://ut.comedical.jp/archives/2', hykwWPData_url::get_thisurl(FALSE));
-    $this->assertEquals('http://ut.comedical.jp/archives/2?code=3', hykwWPData_url::get_thisurl(TRUE));
+    $this->assertEquals('http://wptest.comedical.jp/archives/2', hykwWPData_url::get_thisurl());
+    $this->assertEquals('http://wptest.comedical.jp/archives/2', hykwWPData_url::get_thisurl(FALSE));
+    $this->assertEquals('http://wptest.comedical.jp/archives/2?code=3', hykwWPData_url::get_thisurl(TRUE));
   }
 
 }
