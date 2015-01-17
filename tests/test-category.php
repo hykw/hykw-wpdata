@@ -1,11 +1,52 @@
 <?php
 
 class UT_hykwWPData_category extends WP_UnitTestCase {
+  private $postids;
+  private $catids;
+
   public function setUp()
   {
     parent::setUp();
 
-    switch_theme('ut.child');
+    switch_theme('wptest');
+
+    $catid1 = $this->factory->term->create( array(
+      'name' => 'cat1_parent',
+      'taxonomy' => 'category',
+      'description', 'desc - cat1',
+      ));
+    $catid1_1 = $this->factory->term->create_object( array(
+      'name' => 'cat1_child1',
+      'taxonomy' => 'category',
+      'description' => 'desc - cat1_1',
+      'parent' => $catid1,
+      ));
+
+    $this->catids = array(
+      $catid1,
+      $catid1_1,
+    );
+
+
+#    $cat_all = get_terms( "category", "fields=all&get=all"  );
+#    print_r( $cat_all);
+
+
+#     wp_set_post_terms($postid,)
+    $postid = $this->factory->post->create( array(
+      'post_type' => 'post',
+      'post_title' => 'post title ob',
+    ));
+
+
+    $this->postids = array(
+      $postid,
+    );
+
+
+    # http://codex.wordpress.org/Function_Reference/wp_set_post_terms
+
+
   }
 
   public function tearDown()
@@ -13,60 +54,10 @@ class UT_hykwWPData_category extends WP_UnitTestCase {
     parent::tearDown();
   }
 
-  public function test_iget_post_objects()
+  public function test_bulk()
   {
   
-    /*
-    http://taylorlovett.com/tag/wp_unittestcase/
-    http://codesymphony.co/writing-wordpress-plugin-unit-tests/
-    http://wordpress.stackexchange.com/questions/139128/where-can-i-find-documentation-for-the-wp-unittestcase-factory-classes
-
-    http://miya0001.github.io/wp-unit-docs/
-
-     */
-
   }
 
-
-
-  /*
-  public function test_get_themeURL()
-  {
-    $work = explode('/', hykwWPData_url::get_themeURL(hykwWPData_url::DIR_PARENT));
-    $dir_parent = $work[5];
-    $work = explode('/', hykwWPData_url::get_themeURL(hykwWPData_url::DIR_CHILD));
-    $dir_child = $work[5];
-
-    $this->assertEquals('ut.parent', $dir_parent);
-    $this->assertEquals('ut.child', $dir_child);
-  }
-
-  public function test_get_requestURL()
-  {
-    $this->go_to('/');
-    $this->assertEquals('/', hykwWPData_url::get_requestURL());
-    $this->assertEquals('/', hykwWPData_url::get_requestURL(FALSE));
-
-    $this->go_to('/?code=333');
-    $this->assertEquals('/?code=333', hykwWPData_url::get_requestURL(TRUE));
-    $this->assertEquals('/', hykwWPData_url::get_requestURL());
-    $this->assertEquals('/', hykwWPData_url::get_requestURL(FALSE));
-
-    $this->go_to('/archives/3');
-    $this->assertEquals('/archives/3', hykwWPData_url::get_requestURL());
-    $this->go_to('/archives/3?code=4');
-    $this->assertEquals('/archives/3', hykwWPData_url::get_requestURL());
-    $this->assertEquals('/archives/3', hykwWPData_url::get_requestURL(FALSE));
-    $this->assertEquals('/archives/3?code=4', hykwWPData_url::get_requestURL(TRUE));
-  }
-
-  public function test_get_thisurl()
-  {
-    $this->go_to('/archives/2?code=3');
-    $this->assertEquals('http://ut.comedical.jp/archives/2', hykwWPData_url::get_thisurl());
-    $this->assertEquals('http://ut.comedical.jp/archives/2', hykwWPData_url::get_thisurl(FALSE));
-    $this->assertEquals('http://ut.comedical.jp/archives/2?code=3', hykwWPData_url::get_thisurl(TRUE));
-  }
-   */
 
 }

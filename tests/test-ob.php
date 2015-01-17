@@ -32,7 +32,7 @@ class UT_hykwWPData_ob extends WP_UnitTestCase {
     $postid = $this->factory->post->create( array(
       'post_type' => 'post',
       'post_title' => 'post title ob',
-    )   );
+    ));
     $url = sprintf('/archives/%d', $postid);
     $this->go_to($url);
     $this->assertEquals('post title ob', hykwWPData_ob::get_funcResult('the_title'));
