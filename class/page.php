@@ -142,8 +142,8 @@ class hykwWPData_page extends baseHykwWPData
     if (!is_page())
       return FALSE;
 
-    $url = hykwWPData_url::get_requestURL(FALSE);
-    return self::get_objects($url, FALSE, $keys);
+    $pageid = self::iget_id();
+    return self::get_objects(FALSE, $pageid, $keys);
   }
 
   /**
@@ -191,8 +191,8 @@ class hykwWPData_page extends baseHykwWPData
     if (!is_page())
       return FALSE;
 
-    $url = hykwWPData_url::get_requestURL(FALSE);
-    $ret = self::get_object($key, $url, FALSE);
+    $pageid = self::iget_id();
+    $ret = self::get_object($key, FALSE, $pageid);
     return $ret;
   }
 
@@ -286,8 +286,8 @@ class hykwWPData_page extends baseHykwWPData
    */
   public static function iget_contents()
   {
-    $url = hykwWPData_url::get_requestURL(FALSE);
-    $ret = self::get_contents($url, FALSE);
+    $pageid = self::iget_id();
+    $ret = self::get_contents(FALSE, $pageid);
     return $ret;
   }
 
