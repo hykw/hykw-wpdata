@@ -26,8 +26,29 @@ class UT_hykwWPData_url extends WP_UnitTestCase {
 
   public function test_get_requestURL()
   {
-    $this->assertEquals('ut.parent', hykwWPData_url::get_requestURL());
-  
+    $this->go_to('/');
+    $this->assertEquals('/', hykwWPData_url::get_requestURL());
+    $this->assertEquals('/', hykwWPData_url::get_requestURL(FALSE));
+
+    $this->go_to('/?code=333');
+    $this->assertEquals('/?code=333', hykwWPData_url::get_requestURL(TRUE));
+    $this->assertEquals('/', hykwWPData_url::get_requestURL());
+    $this->assertEquals('/', hykwWPData_url::get_requestURL(FALSE));
+
+    $this->go_to('/archives/3');
+    $this->assertEquals('/archives/3', hykwWPData_url::get_requestURL());
+    $this->go_to('/archives/3?code=4');
+    $this->assertEquals('/archives/3', hykwWPData_url::get_requestURL());
+    $this->assertEquals('/archives/3', hykwWPData_url::get_requestURL(FALSE));
+    $this->assertEquals('/archives/3?code=4', hykwWPData_url::get_requestURL(TRUE));
+  }
+
+  public function test_get_thisurl()
+  {
+    $this->go_to('/archives/2?code=3');
+    $this->assertEquals('http://ut.comedical.jp/archives/2', hykwWPData_url::get_thisurl());
+    $this->assertEquals('http://ut.comedical.jp/archives/2', hykwWPData_url::get_thisurl(FALSE));
+    $this->assertEquals('http://ut.comedical.jp/archives/2?code=3', hykwWPData_url::get_thisurl(TRUE));
   }
 
 }
