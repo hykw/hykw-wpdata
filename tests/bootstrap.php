@@ -1,6 +1,7 @@
 <?php
 
-$_tests_dir = getenv('WP_PATH_UT');
+$_tests_dir = sprintf('%s/ut/hykw-wpdata', getenv('HOME'));
+
 require_once $_tests_dir . '/includes/functions.php';
 
 function _manually_load_environment()
