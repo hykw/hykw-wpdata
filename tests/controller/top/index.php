@@ -5,17 +5,6 @@
 
 assert_equal('p', FALSE, hykwWPData_category::iget_id());
 
-$i = 1;
-assert_equal('a'.$i++, 1, hykwWPData_account::get_id('wptestuser'));
-assert_equal('a'.$i++, FALSE, hykwWPData_account::get_id(''));
-assert_equal('a'.$i++, FALSE, hykwWPData_account::get_id('unknownuserxxxx'));
-
-##################################################
-
-global $gobjMVC;
-$i = 1;
-assert_equal('u'.$i++, 'hello!', $gobjMVC->callUtil('echo', 'hello', '!'));
-
 
 ######
 $i = 1;
