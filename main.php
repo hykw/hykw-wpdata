@@ -77,6 +77,9 @@ class baseHykwWPData
     if ($keys == FALSE)
       return $catobj;
 
+    if (is_null($catobj))
+      return FALSE;
+
     $ret = array();
     foreach ($catobj as $cat) {
       $record = array();

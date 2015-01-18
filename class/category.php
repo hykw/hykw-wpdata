@@ -136,6 +136,8 @@ class hykwWPData_category extends baseHykwWPData
   public static function get_objects($catid, $keys = FALSE)
   {
     $cats = array(get_category($catid));
+    if ( (count($cats) == 1) && (is_null($cats[0])) )
+      return array();
 
     $ret = self::_trimOnlySpecifiedObjects($cats, $keys);
     return $ret[0];
