@@ -13,3 +13,14 @@ tests_add_filter( 'muplugins_loaded', '_manually_load_environment'  );
 
 require $_tests_dir . '/includes/bootstrap.php';
 
+##################################################
+function p($obj)
+{
+  print_r($obj);
+  exit;
+}
+function v($obj)
+{
+  var_dump($obj);
+  exit;
+}

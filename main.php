@@ -96,7 +96,17 @@ class baseHykwWPData
    */
   protected static function _pruneDomainFromURL($url)
   {
-    $url = preg_replace(sprintf('/https?:\/\/%s(.*)$/', $_SERVER['SERVER_NAME']), '${1}', $url);
+    # WP_UnitTestCase用
+    if (!isset($_SERVER['SERVER_NAME'])) {
+      if (defined('WP_TESTS_DOMAIN'))
+        $servername = WP_TESTS_DOMAIN;
+      else
+        return $url;
+    } else {
+      $servername = $_SERVER['SERVER_NAME'];
+    }
+
+    $url = preg_replace(sprintf('/https?:\/\/%s(.*)$/', $servername), '${1}', $url);
     return $url;
   }
 

@@ -1,6 +1,6 @@
 <?php
 
-class UT_hykwWPData_category extends WP_UnitTestCase {
+class UT_hykwWPData_post extends WP_UnitTestCase {
   private $postids;
   private $catids;
 
@@ -97,17 +97,26 @@ class UT_hykwWPData_category extends WP_UnitTestCase {
 
   public function test_bulk()
   {
-    /*
-#    $url = sprintf('/archives/%s', $this->postids[0]);
-    $url = sprintf('/?p=%s', $this->postids[2]);
+    $url = sprintf('/?p=%s', $this->postids[0]);
     $this->go_to($url);
+    $fqdnAndPath = sprintf('http://%s%s', WP_TESTS_DOMAIN, $url);
 
-    $obj = hykwWPData_category::iget_post_objects();
-    p($obj);
-    $this->assertEquals(FALSE, $obj[0]['name']);
-#    $this->assertEquals(FALSE, hykwWPData_category::iget_post_objects(FALSE, FALSE));
-     */
- 
+    ##### iget_id()
+    $this->assertEquals($this->postids[0], hykwWPData_post::iget_id());
+
+    ##### iget_permalink()
+    $this->assertEquals($url, hykwWPData_post::iget_permalink());
+    $this->assertEquals($fqdnAndPath, hykwWPData_post::iget_permalink(FALSE));
+    $this->assertEquals($url, hykwWPData_post::iget_permalink(TRUE));
+
+    ##### get_permalink()
+    $this->assertEquals($url, hykwWPData_post::get_permalink($this->postids[0]));
+    $this->assertEquals($fqdnAndPath, hykwWPData_post::get_permalink($this->postids[0], FALSE));
+    $this->assertEquals($url, hykwWPData_post::get_permalink($this->postids[0], TRUE));
+
+    $this->assertEquals('', hykwWPData_post::get_permalink(9999));
+
+
   }
 
 
