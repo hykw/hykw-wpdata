@@ -123,7 +123,7 @@ class hykwWPData_post extends baseHykwWPData
    * get_title 指定IDの投稿のタイトルを返す
    * 
    * @param integer $postid 投稿ID
-   * @return string 投稿のタイトル
+   * @return string 投稿のタイトル(取得失敗なら"")
    */
   public static function get_title($postid)
   {

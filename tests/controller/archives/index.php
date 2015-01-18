@@ -7,17 +7,6 @@ function post()
 
   ### hykwWPData_post
 
-  assert_equal('p4', 'publish', hykwWPData_post::iget_status());
-  assert_equal('p5', 'publish', hykwWPData_post::get_status(4));
-  assert_equal('p6', 'draft', hykwWPData_post::get_status(1164));
-  assert_equal('p7', 'trash', hykwWPData_post::get_status(1));
-  assert_equal('p8', '', hykwWPData_post::get_status(99999));
-
-  assert_equal('p9', 'post', hykwWPData_post::iget_type());
-  assert_equal('p10', 'post', hykwWPData_post::get_type(4));
-  assert_equal('p11', '', hykwWPData_post::get_type(99999));
-  assert_equal('p12', 'page', hykwWPData_post::get_type(1751));
-
   assert_equal('p13', '投稿１', hykwWPData_post::iget_title());
   assert_equal('p14', '投稿１', hykwWPData_post::get_title(4));
   assert_equal('p15', '極端な例: ネスト化された混合リスト', hykwWPData_post::get_title(1000));
