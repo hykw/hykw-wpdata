@@ -83,7 +83,7 @@ class hykwWPData_page extends baseHykwWPData
 
     $pages = $wp_query->query($args);
     $objs = get_page_children($pageid, $pages);
-    if (is_null($objs)) {
+    if (is_null($objs) || count($objs) == 0) {
       wp_reset_postdata();
       return FALSE;
     }
