@@ -82,4 +82,22 @@ class UT_hykwWPData_post extends hykwEasyUT {
     $this->assertEquals('', hykwWPData_post::get_postmeta(9999, 'カスタム1'));
   }
 
+  public function test_fail()
+  {
+    $this->go_to('/?code=3');
+
+    $this->assertEquals(FALSE, hykwWPData_post::iget_id());
+    $this->assertEquals(FALSE, hykwWPData_post::iget_permalink());
+    $this->assertEquals(FALSE, hykwWPData_post::iget_status());
+    $this->assertEquals(FALSE, hykwWPData_post::iget_type());
+    $this->assertEquals(FALSE, hykwWPData_post::iget_title());
+    $this->assertEquals(FALSE, hykwWPData_post::iget_thumbnail_url());
+    $this->assertEquals(FALSE, hykwWPData_post::iget_thumbnail_url('full'));
+    $this->assertEquals(FALSE, hykwWPData_post::iget_thumbnail_url('thumbnail'));
+    $this->assertEquals(FALSE, hykwWPData_post::iget_content());
+    $this->assertEquals(FALSE, hykwWPData_post::iget_excerpt());
+    $this->assertEquals(FALSE, hykwWPData_post::iget_postdate());
+    $this->assertEquals(FALSE, hykwWPData_post::iget_postmeta(FALSE));
+  }
+
 }

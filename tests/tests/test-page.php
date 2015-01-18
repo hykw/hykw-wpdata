@@ -76,4 +76,17 @@ class UT_hykwWPData_page extends hykwEasyUT {
     $this->assertEquals(FALSE, hykwWPData_page::get_children_ids(1751));
   }
 
+  public function test_fail()
+  {
+    $this->go_to('/?code=3');
+
+    $this->assertEquals(FALSE, hykwWPData_page::iget_id());
+    $this->assertEquals(FALSE, hykwWPData_page::iget_parent_id());
+    $this->assertEquals(FALSE, hykwWPData_page::iget_children_ids());
+    $this->assertEquals(FALSE, hykwWPData_page::iget_permalink());
+    $this->assertEquals(FALSE, hykwWPData_page::iget_objects());
+    $this->assertEquals(FALSE, hykwWPData_page::iget_title());
+  }
+
 }
+
