@@ -36,11 +36,3 @@ assert_equal('post'.$i++, FALSE, hykwWPData_post::iget_excerpt());
 assert_equal('post'.$i++, FALSE, hykwWPData_post::iget_postdate());
 assert_equal('post'.$i++, FALSE, hykwWPData_post::iget_postmeta(FALSE));
 
-$i = 1;
-assert_equal('tag'.$i++, FALSE, hykwWPData_tag::iget_post_objects());
-
-############################## dir
-
-$i = 1;
-assert_equal('dir'.$i++, '/var/www/wptest.comedical.jp/wordpress/wp-content/themes/wptest.parent', hykwWPData_dir::get_themeDIR(hykwWPData_dir::DIR_PARENT));
-assert_equal('dir'.$i++, '/var/www/wptest.comedical.jp/wordpress/wp-content/themes/wptest', hykwWPData_dir::get_themeDIR(hykwWPData_dir::DIR_CHILD));
