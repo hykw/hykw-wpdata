@@ -216,7 +216,7 @@ class hykwWPData_page extends baseHykwWPData
 
 
   /**
-   * iget_permalink 選択中の固定ページのURLを返す
+   * iget_permalink 選択中の固定ページのURLを返す（permalinkなので、アクセスURLに?code=などが付いていても、リターン値には含まれない）
    *
    実行例）
   <pre>
