@@ -337,6 +337,31 @@ class hykwWPData_page extends baseHykwWPData
     return $ret;
   }
 
+  /**
+   * iget_postmeta 指定キーのカスタムフィールドの値を返す
+   * 
+   * @param string $key カスタムフィールドの名前
+   * @return string カスタムフィールドの値
+   */
+  public static function iget_pagemeta($key)
+  {
+    $pageid = self::iget_id();
+    return self::get_pagemeta($pageid, $key);
+  }
+
+  /**
+   * get_postmeta 指定キーのカスタムフィールドの値を返す
+   * 
+   * @param integer $pageid ページID
+   * @param string $key カスタムフィールドの名前
+   * @return string カスタムフィールドの値
+   */
+  public static function get_pagemeta($pageid, $key)
+  {
+    return get_post_meta($pageid, $key, TRUE);
+  }
+
+
 }
 
 

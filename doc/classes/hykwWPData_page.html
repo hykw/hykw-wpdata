@@ -106,7 +106,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">51</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">53</span>
                                 </a>
                             </li>
                             <li>
@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1757611721"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-517583507"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1757611721" class="accordion-body collapse in">
+            <div id="namespace-517583507" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -207,6 +207,8 @@
                                                                     <a href="../classes/hykwWPData_page.html#method_get_contents" class="">get_contents()</a><br />
                                                                     <a href="../classes/hykwWPData_page.html#method_iget_date" class="">iget_date()</a><br />
                                                                     <a href="../classes/hykwWPData_page.html#method_get_date" class="">get_date()</a><br />
+                                                                    <a href="../classes/hykwWPData_page.html#method_iget_pagemeta" class="">iget_pagemeta()</a><br />
+                                                                    <a href="../classes/hykwWPData_page.html#method_get_pagemeta" class="">get_pagemeta()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No public properties found</em>
@@ -954,6 +956,87 @@ self::iget_permalink(FALSE)    # http://example.jp/page1
         </aside>
     </div>
 
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_iget_pagemeta" name="method_iget_pagemeta" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">iget_pagemeta()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">iget_pagemeta(string  <span class="argument">$key</span>) : string</pre>
+                <p><em>iget_postmeta 指定キーのカスタムフィールドの値を返す</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>カスタムフィールドの名前</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>カスタムフィールドの値</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_pagemeta" name="method_get_pagemeta" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get_pagemeta()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_pagemeta(integer  <span class="argument">$pageid</span>, string  <span class="argument">$key</span>) : string</pre>
+                <p><em>get_postmeta 指定キーのカスタムフィールドの値を返す</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$pageid </td>
+                                <td><p>ページID</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>カスタムフィールドの名前</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>カスタムフィールドの値</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
                                                                     </div>
     </section>
 
@@ -1003,7 +1086,7 @@ self::iget_permalink(FALSE)    # http://example.jp/page1
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on January 19th, 2015 at 06:13.
+                    on January 20th, 2015 at 04:53.
                 </section>
             </section>
         </section>
