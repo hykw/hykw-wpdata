@@ -79,6 +79,7 @@ class UT_hykwWPData_post extends hykwEasyUT {
     $this->assertEquals('111', hykwWPData_post::iget_postmeta('カスタム1'));
     $this->assertEquals('', hykwWPData_post::iget_postmeta('xxxxx'));
     $this->assertEquals('111', hykwWPData_post::get_postmeta(4, 'カスタム1'));
+    $this->assertEquals('', hykwWPData_post::get_postmeta(4, 'xxxx'));
     $this->assertEquals('', hykwWPData_post::get_postmeta(9999, 'カスタム1'));
   }
 

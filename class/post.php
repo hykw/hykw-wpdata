@@ -299,7 +299,7 @@ class hykwWPData_post extends baseHykwWPData
    * iget_postmeta 投稿の指定キーのカスタムフィールドの値を返す
    * 
    * @param string $key カスタムフィールドの名前
-   * @return string カスタムフィールドの値、投稿以外はFALSE
+   * @return string カスタムフィールドの値、投稿以外はFALSE、取得出来ない時は""
    */
   public static function iget_postmeta($key)
   {
@@ -315,7 +315,7 @@ class hykwWPData_post extends baseHykwWPData
    * 
    * @param integer $postid 投稿ID
    * @param string $key カスタムフィールドの名前
-   * @return string カスタムフィールドの値
+   * @return string カスタムフィールドの値(取得できない時は"")
    */
   public static function get_postmeta($postid, $key)
   {

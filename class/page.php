@@ -341,7 +341,7 @@ class hykwWPData_page extends baseHykwWPData
    * iget_postmeta 指定キーのカスタムフィールドの値を返す
    * 
    * @param string $key カスタムフィールドの名前
-   * @return string カスタムフィールドの値
+   * @return string カスタムフィールドの値、取得出来ない時は""
    */
   public static function iget_pagemeta($key)
   {
@@ -354,7 +354,7 @@ class hykwWPData_page extends baseHykwWPData
    * 
    * @param integer $pageid ページID
    * @param string $key カスタムフィールドの名前
-   * @return string カスタムフィールドの値
+   * @return string カスタムフィールドの値、取得出来ない時は""
    */
   public static function get_pagemeta($pageid, $key)
   {

@@ -88,12 +88,13 @@ class UT_hykwWPData_page extends hykwEasyUT {
     $this->assertEquals(FALSE, hykwWPData_page::iget_title());
   }
 
-  public function test_get_postmeta()
+  public function test_get_pagemeta()
   {
     $url = '/sample-page-2';
     $this->go_to($url);
 
     $this->assertEquals('', hykwWPData_page::iget_pagemeta('xxxxx'));
+    $this->assertEquals('', hykwWPData_page::get_pagemeta(1751, 'xxxxx'));
 
     $this->assertEquals('12345', hykwWPData_page::iget_pagemeta('固定ページのカスタムフィールド'));
     $this->assertEquals('12345', hykwWPData_page::get_pagemeta(1751, '固定ページのカスタムフィールド'));
