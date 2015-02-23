@@ -46,7 +46,14 @@ class UT_hykwWPData_post extends hykwEasyUT {
 
     ##### *get_thumbnail_url()
     $this->assertEquals(UT_THUMBNAIL_4, hykwWPData_post::iget_thumbnail_url());
+    $this->assertEquals(UT_THUMBNAIL_4, hykwWPData_post::iget_thumbnail_url('thumbnail'));
+    $this->assertEquals(UT_THUMBNAIL_4, hykwWPData_post::iget_thumbnail_url('thumbnail', FALSE));
+    $this->assertEquals(UT_THUMBNAIL_4_STRIPDOMAIN, hykwWPData_post::iget_thumbnail_url('thumbnail', TRUE));
+
     $this->assertEquals(UT_THUMBNAIL_4, hykwWPData_post::get_thumbnail_url($postid));
+    $this->assertEquals(UT_THUMBNAIL_4, hykwWPData_post::get_thumbnail_url($postid, 'thumbnail'));
+    $this->assertEquals(UT_THUMBNAIL_4, hykwWPData_post::get_thumbnail_url($postid, 'thumbnail', FALSE));
+    $this->assertEquals(UT_THUMBNAIL_4_STRIPDOMAIN, hykwWPData_post::get_thumbnail_url($postid, 'thumbnail', TRUE));
 
     ##### get_thumbnail_obj()
     $obj = hykwWPData_post::get_thumbnail_obj($postid);
@@ -92,9 +99,18 @@ class UT_hykwWPData_post extends hykwEasyUT {
     $this->assertEquals(FALSE, hykwWPData_post::iget_status());
     $this->assertEquals(FALSE, hykwWPData_post::iget_type());
     $this->assertEquals(FALSE, hykwWPData_post::iget_title());
+
     $this->assertEquals(FALSE, hykwWPData_post::iget_thumbnail_url());
     $this->assertEquals(FALSE, hykwWPData_post::iget_thumbnail_url('full'));
     $this->assertEquals(FALSE, hykwWPData_post::iget_thumbnail_url('thumbnail'));
+
+    $this->assertEquals(FALSE, hykwWPData_post::iget_thumbnail_url(FALSE, FALSE));
+    $this->assertEquals(FALSE, hykwWPData_post::iget_thumbnail_url(FALSE, TRUE));
+    $this->assertEquals(FALSE, hykwWPData_post::iget_thumbnail_url('full', TRUE));
+    $this->assertEquals(FALSE, hykwWPData_post::iget_thumbnail_url('full', FALSE));
+    $this->assertEquals(FALSE, hykwWPData_post::iget_thumbnail_url('thumbnail', FALSE));
+    $this->assertEquals(FALSE, hykwWPData_post::iget_thumbnail_url('thumbnail', TRUE));
+
     $this->assertEquals(FALSE, hykwWPData_post::iget_content());
     $this->assertEquals(FALSE, hykwWPData_post::iget_excerpt());
     $this->assertEquals(FALSE, hykwWPData_post::iget_postdate());

@@ -134,29 +134,53 @@ class hykwWPData_post extends baseHykwWPData
   /**
    * iget_thumbnail_url 投稿の添付画像のURLを返す
    * 
+   * 例）
+   * <pre>
+   *   self::iget_thumbnail_url('full');   'http://example.com/wp-content/uploads/2015/02/aaaa.png'
+   *   self::iget_thumbnail_url('full', FASE);   'http://example.com/wp-content/uploads/2015/02/aaaa.png'
+   *   self::iget_thumbnail_url('full', TRUE);   '/wp-content/uploads/2015/02/aaaa.png'
+   * </pre>
+
    * @param string $size 画像の大きさ
+   * @param boolean $stripDomain TRUEならドメインを含まない
    * @return string 画像のURL(未設定なら""、投稿以外はFALSE)
    */
-  public static function iget_thumbnail_url($size = 'thumbnail')
+  public static function iget_thumbnail_url($size = 'thumbnail', $stripDomain = FALSE)
   {
     $postid = self::iget_id();
     if ($postid == FALSE)
       return FALSE;
 
-    return self::get_thumbnail_url($postid, $size);
+    return self::get_thumbnail_url($postid, $size, $stripDomain);
   }
 
   /**
    * get_thumbnail_url 指定IDの投稿の添付画像のURLを返す
    * 
+   * 例）
+   * <pre>
+   *   self::get_thumbnail_url(1, 'full');   'http://example.com/wp-content/uploads/2015/02/aaaa.png'
+   *   self::get_thumbnail_url(1, 'full', FASE);   'http://example.com/wp-content/uploads/2015/02/aaaa.png'
+   *   self::get_thumbnail_url(1, 'full', TRUE);   '/wp-content/uploads/2015/02/aaaa.png'
+   * </pre>
+
    * @param integer $postid 投稿ID
    * @param string $size 画像の大きさ
+   * @param boolean $stripDomain TRUEならドメインを含まない
    * @return string 画像のURL(未設定なら"")
    */
-  public static function get_thumbnail_url($postid, $size = 'thumbnail')
+  public static function get_thumbnail_url($postid, $size = 'thumbnail', $stripDomain = FALSE)
   {
     $ret = self::get_thumbnail_obj($postid, $size);
-    return ($ret == FALSE) ? '' : $ret[0];
+    $url = ($ret == FALSE) ? '' : $ret[0];
+
+    if ( ($url != '') && ($stripDomain)) {
+      $work = explode('/', $url);
+      $slicedURL = array_slice($work, 3);
+      $url = '/' . implode('/', $slicedURL);
+    }
+
+    return $url;
   }
 
   /**

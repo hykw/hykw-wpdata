@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-488027564"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1445627893"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-488027564" class="accordion-body collapse in">
+            <div id="namespace-1445627893" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -609,9 +609,14 @@ self::iget_permalink(FALSE)    # http://example.jp/archives/4
             <article class="method">
                 <h3 class="public ">iget_thumbnail_url()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">iget_thumbnail_url(string  <span class="argument">$size = &#039;thumbnail&#039;</span>) : string</pre>
+                <pre class="signature" style="margin-right: 54px;">iget_thumbnail_url(string  <span class="argument">$size = &#039;thumbnail&#039;</span>, boolean  <span class="argument">$stripDomain = FALSE</span>) : string</pre>
                 <p><em>iget_thumbnail_url 投稿の添付画像のURLを返す</em></p>
-                
+                <p>例）</p>
+<pre>
+  self::iget_thumbnail_url('full');   'http://example.com/wp-content/uploads/2015/02/aaaa.png'
+  self::iget_thumbnail_url('full', FASE);   'http://example.com/wp-content/uploads/2015/02/aaaa.png'
+  self::iget_thumbnail_url('full', TRUE);   '/wp-content/uploads/2015/02/aaaa.png'
+</pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -619,6 +624,11 @@ self::iget_permalink(FALSE)    # http://example.jp/archives/4
                                 <td>string</td>
                                 <td>$size </td>
                                 <td><p>画像の大きさ</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$stripDomain </td>
+                                <td><p>TRUEならドメインを含まない</p></td>
                             </tr>
                                             </table>
                 
@@ -647,9 +657,14 @@ self::iget_permalink(FALSE)    # http://example.jp/archives/4
             <article class="method">
                 <h3 class="public ">get_thumbnail_url()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_thumbnail_url(integer  <span class="argument">$postid</span>, string  <span class="argument">$size = &#039;thumbnail&#039;</span>) : string</pre>
+                <pre class="signature" style="margin-right: 54px;">get_thumbnail_url(integer  <span class="argument">$postid</span>, string  <span class="argument">$size = &#039;thumbnail&#039;</span>, boolean  <span class="argument">$stripDomain = FALSE</span>) : string</pre>
                 <p><em>get_thumbnail_url 指定IDの投稿の添付画像のURLを返す</em></p>
-                
+                <p>例）</p>
+<pre>
+  self::get_thumbnail_url(1, 'full');   'http://example.com/wp-content/uploads/2015/02/aaaa.png'
+  self::get_thumbnail_url(1, 'full', FASE);   'http://example.com/wp-content/uploads/2015/02/aaaa.png'
+  self::get_thumbnail_url(1, 'full', TRUE);   '/wp-content/uploads/2015/02/aaaa.png'
+</pre>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -662,6 +677,11 @@ self::iget_permalink(FALSE)    # http://example.jp/archives/4
                                 <td>string</td>
                                 <td>$size </td>
                                 <td><p>画像の大きさ</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$stripDomain </td>
+                                <td><p>TRUEならドメインを含まない</p></td>
                             </tr>
                                             </table>
                 
@@ -1098,7 +1118,7 @@ $date = self::iget_postdate();    # '2014/12/28'
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on January 21st, 2015 at 12:41.
+                    on February 23rd, 2015 at 06:13.
                 </section>
             </section>
         </section>
