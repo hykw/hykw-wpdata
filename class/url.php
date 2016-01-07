@@ -14,18 +14,27 @@ class hykwWPData_url extends baseHykwWPData
    * get_themeURL テーマのディレクトリを返す
    * 
    * @param const $parentChild 親もしくは子
+   * @param boolean $with_scheme: FALSEなら //example.com のように scheme 無し
    * @return string テーマのディレクトリまでのFQDNを返す(e.g. 'http://example.com/wp-content/themes/test')
    */
-  public static function get_themeURL($parentChild)
+  public static function get_themeURL($parentChild, $with_scheme = TRUE)
   {
-    switch($parentChild)
-    {
+    $ret = '';
+    switch($parentChild) {
     case self::DIR_PARENT:
-      return get_template_directory_uri();
+      $ret = get_template_directory_uri();
+      break;
     case self::DIR_CHILD:
-      return get_stylesheet_directory_uri();
+      $ret = get_stylesheet_directory_uri();
+      break;
+    default:
+      return '';
     }
-    return '';
+
+    if ($with_scheme)
+      return $ret;
+
+    return preg_replace("/^https?:/", "", $ret);
   }
 
   /**
