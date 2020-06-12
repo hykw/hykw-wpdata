@@ -211,6 +211,9 @@ class hykwWPData_page extends baseHykwWPData
       return FALSE;
 
     $ret = self::get_objects($url, $pageid, array($key));
+    if ($ret === FALSE)
+      return FALSE;
+
     return $ret[$key];
   }
 
