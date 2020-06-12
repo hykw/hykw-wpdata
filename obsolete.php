@@ -130,6 +130,8 @@ class hykwWPData
       return '';
 
     $image = wp_get_attachment_image_src($thum_id, $size);
+    if ($image === FALSE)
+      return FALSE;
 
     return $image[0];
   }
